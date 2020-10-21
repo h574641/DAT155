@@ -19,7 +19,31 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="Kommentar" />
+    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="Startkode">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/controls/MouseLookController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/SimplexNoise.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/Utilities.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/three.module.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/loaders/GLTFLoader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/materials/ShaderCustomiser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/materials/TextureSplattingMaterial.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/js/terrain/TerrainBufferGeometry.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/heightmap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/heightmapVol.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/splatmap_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/models/kenney_nature_kit/License.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/models/kenney_nature_kit/tree_thin.glb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/grass_01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/grass_02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/snowy_rock_01.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,6 +84,7 @@
       <updated>1603276791019</updated>
       <workItem from="1603276792123" duration="814000" />
       <workItem from="1603279479987" duration="2388000" />
+      <workItem from="1603282009493" duration="401000" />
     </task>
     <task id="LOCAL−00001" summary="Startkode">
       <created>1603276883975</created>
@@ -93,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603281773049</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Kommentar">
+      <created>1603282021963</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1603282021964</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,11 +141,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Startkode" />
     <MESSAGE value="Kommentar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kommentar" />
+    <MESSAGE value="Startkode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Startkode" />
   </component>
   <component name="WindowStateProjectService">
     <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1603277280939">
@@ -129,10 +162,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="784" y="439" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603277035263" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1603281950273">
+    <state x="219" y="47" key="MergeDialog" timestamp="1603282200259">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="219" y="47" key="MergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282200259" />
+    <state x="1258" y="330" key="MultipleFileMergeDialog" timestamp="1603282201480">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1258" y="330" key="MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282201480" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1603282137123">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277289792" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603281950273" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282137123" />
+    <state x="1437" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603282238931">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1437" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282238931" />
   </component>
 </project>
