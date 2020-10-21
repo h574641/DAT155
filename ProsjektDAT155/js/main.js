@@ -1,3 +1,5 @@
+// Hei, dette er ein melding
+
 import {
     PerspectiveCamera,
     WebGLRenderer,
