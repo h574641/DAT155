@@ -27,6 +27,11 @@
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/HVL/DAT155/threejs-template-master" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mfoys\WebstormProjects\DAT155-Lab6\startkode" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -35,7 +40,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603276791019</updated>
-      <workItem from="1603276792123" duration="376000" />
+      <workItem from="1603276792123" duration="814000" />
     </task>
     <task id="LOCAL−00001" summary="Startkode">
       <created>1603276883975</created>
@@ -43,7 +48,19 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1603276883975</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="Startkode">
+      <created>1603277199515</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1603277199515</updated>
+    </task>
+    <task id="LOCAL−00003" summary="Startkode">
+      <created>1603277283372</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1603277283372</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -54,10 +71,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Startkode" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1603276883075">
+    <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1603277280939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603276883075" />
+    <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277280939" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1603276847368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -66,9 +83,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="784" y="439" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603277035263" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1603277065305">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1603277289792">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277065305" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277289792" />
   </component>
 </project>
