@@ -190,7 +190,7 @@ async function main() {
 
     const pmremGenerator = new THREE.PMREMGenerator(renderer);
 
-    function updateSun() {
+    async function updateSun() {
 
         var theta = Math.PI * (parameters.inclination - 0.5);
         var phi = 2 * Math.PI * (parameters.azimuth - 0.5);
@@ -206,10 +206,6 @@ async function main() {
 
     }
     updateSun();
-
-    /**
-     * Gui
-     */
 
 
     /**
