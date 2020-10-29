@@ -19,30 +19,29 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="Startkode">
+    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="Endret til vulkan med vann">
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/js/objects/Sky.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/js/objects/Sky.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/js/objects/Water.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/js/objects/Water.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/js/objects/Water2.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/js/objects/Water2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmap3VL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapLV.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapLake.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapRiver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapRiver2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapV.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapVL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/heightmapVL2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/textures/waternormals.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/controls/MouseLookController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/SimplexNoise.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/Utilities.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/three.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/loaders/GLTFLoader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/materials/ShaderCustomiser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/materials/TextureSplattingMaterial.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/js/terrain/TerrainBufferGeometry.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/heightmap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/heightmapVol.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/splatmap_01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/models/kenney_nature_kit/License.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/models/kenney_nature_kit/tree_thin.glb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/grass_01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/grass_02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/snowy_rock_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/terrain/TerrainBufferGeometry.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/terrain/TerrainBufferGeometry.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,13 +65,23 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../HVL/DAT155/threejs-template-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mfoys\WebstormProjects\DAT155-Lab6\startkode" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DAT155-Lab6/ProsjektDAT155/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -84,7 +93,10 @@
       <updated>1603276791019</updated>
       <workItem from="1603276792123" duration="814000" />
       <workItem from="1603279479987" duration="2388000" />
-      <workItem from="1603282009493" duration="401000" />
+      <workItem from="1603282009493" duration="1053000" />
+      <workItem from="1603711281730" duration="18070000" />
+      <workItem from="1604004063352" duration="1809000" />
+      <workItem from="1604005894231" duration="8535000" />
     </task>
     <task id="LOCAL−00001" summary="Startkode">
       <created>1603276883975</created>
@@ -125,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603282021964</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Startkode">
+      <created>1603282441476</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603282441476</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,35 +165,84 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Kommentar" />
     <MESSAGE value="Startkode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Startkode" />
+    <MESSAGE value="Endret til vulkan med vann" />
+    <option name="LAST_COMMIT_MESSAGE" value="Endret til vulkan med vann" />
   </component>
   <component name="WindowStateProjectService">
     <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1603277280939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277280939" />
-    <state x="987" y="369" key="FileChooserDialogImpl" timestamp="1603279513294">
+    <state x="987" y="369" key="FileChooserDialogImpl" timestamp="1604004096583">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603276847368" />
-    <state x="987" y="369" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603279513294" />
+    <state x="987" y="369" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604004096583" />
     <state x="784" y="439" key="Github.CreateGistDialog" timestamp="1603277035263">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="784" y="439" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603277035263" />
-    <state x="219" y="47" key="MergeDialog" timestamp="1603282200259">
+    <state width="2561" height="350" key="GridCell.Tab.0.bottom" timestamp="1604014081075">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="219" y="47" key="MergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282200259" />
-    <state x="1258" y="330" key="MultipleFileMergeDialog" timestamp="1603282201480">
+    <state width="2561" height="350" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.0.center" timestamp="1604014081075">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1258" y="330" key="MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282201480" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1603282137123">
+    <state width="2561" height="350" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.0.left" timestamp="1604014081075">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.0.right" timestamp="1604014081075">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.1.bottom" timestamp="1604014081075">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.1.center" timestamp="1604014081075">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.1.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.1.left" timestamp="1604014081075">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.1.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.1.right" timestamp="1604014081075">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.1.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.2.bottom" timestamp="1604014081076">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081076" />
+    <state width="2561" height="350" key="GridCell.Tab.2.center" timestamp="1604014081076">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.2.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081076" />
+    <state width="2561" height="350" key="GridCell.Tab.2.left" timestamp="1604014081075">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.2.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081075" />
+    <state width="2561" height="350" key="GridCell.Tab.2.right" timestamp="1604014081076">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2561" height="350" key="GridCell.Tab.2.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604014081076" />
+    <state x="219" y="47" key="MergeDialog" timestamp="1603282428619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="219" y="47" key="MergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282428619" />
+    <state x="1258" y="330" key="MultipleFileMergeDialog" timestamp="1603282428623">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1258" y="330" key="MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282428623" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1603282460361">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277289792" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282137123" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282460361" />
     <state x="1437" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603282238931">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

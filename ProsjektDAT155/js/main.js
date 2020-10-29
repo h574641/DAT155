@@ -10,7 +10,7 @@ import {
     Vector3,
     AxesHelper,
 } from './lib/three.module.js';
-
+import * as THREE from './lib/three.module.js';
 import Utilities from './lib/Utilities.js';
 import MouseLookController from './controls/MouseLookController.js';
 
@@ -18,17 +18,22 @@ import TextureSplattingMaterial from './materials/TextureSplattingMaterial.js';
 import TerrainBufferGeometry from './terrain/TerrainBufferGeometry.js';
 import { GLTFLoader } from './loaders/GLTFLoader.js';
 import { SimplexNoise } from './lib/SimplexNoise.js';
+import { Water } from './objects/Water.js';
+import { Sky } from './objects/Sky.js';
+
+
+
 
 async function main() {
 
     const scene = new Scene();
 
-    const axesHelper = new AxesHelper(15);
+    const axesHelper = new AxesHelper(30);
     scene.add(axesHelper);
 
-    const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
 
-    const renderer = new WebGLRenderer({ antialias: true });
+    const renderer = new WebGLRenderer({antialias: true});
     renderer.setClearColor(0xffffff);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -41,7 +46,10 @@ async function main() {
      *  - update projection matrix
      *  - update renderer size
      */
+
+
     window.addEventListener('resize', () => {
+
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
 
@@ -78,35 +86,36 @@ async function main() {
     camera.rotation.x -= Math.PI * 0.25;
 
 
+
     /**
      * Add terrain:
-     * 
+     *
      * We have to wait for the image file to be loaded by the browser.
      * There are many ways to handle asynchronous flow in your application.
      * We are using the async/await language constructs of Javascript:
      *  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
      */
-    const heightmapImage = await Utilities.loadImage('resources/images/heightmap.png');
-    const width = 100;
+    const heightmapImage = await Utilities.loadImage('resources/images/heightmapVL2.png');
+    const width = 2000;
 
     const simplex = new SimplexNoise();
     const terrainGeometry = new TerrainBufferGeometry({
         width,
         heightmapImage,
         // noiseFn: simplex.noise.bind(simplex),
-        numberOfSubdivisions: 128,
-        height: 20
+        numberOfSubdivisions: 256,
+        height: 900
     });
 
     const grassTexture = new TextureLoader().load('resources/textures/grass_02.png');
     grassTexture.wrapS = RepeatWrapping;
     grassTexture.wrapT = RepeatWrapping;
-    grassTexture.repeat.set(5000 / width, 5000 / width);
+    grassTexture.repeat.set(30000 / width, 30000 / width);
 
     const snowyRockTexture = new TextureLoader().load('resources/textures/snowy_rock_01.png');
     snowyRockTexture.wrapS = RepeatWrapping;
     snowyRockTexture.wrapT = RepeatWrapping;
-    snowyRockTexture.repeat.set(1500 / width, 1500 / width);
+    snowyRockTexture.repeat.set(15000 / width, 15000 / width);
 
 
     const splatMap = new TextureLoader().load('resources/images/splatmap_01.png');
@@ -123,13 +132,91 @@ async function main() {
     terrain.castShadow = true;
     terrain.receiveShadow = true;
 
+
     scene.add(terrain);
+
+
+    /**
+     * Water
+     */
+
+    const waterGeometry = new THREE.PlaneBufferGeometry(2000, 2000);
+
+    const water = new Water(
+        waterGeometry,
+        {
+            textureWidth: 512,
+            textureHeight: 512,
+            waterNormals: new THREE.TextureLoader().load('resources/textures/waternormals.jpg', function (texture) {
+
+                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
+            }),
+            alpha: 1.0,
+            sunDirection: new THREE.Vector3(),
+            sunColor: 0xffffff,
+            waterColor: 0x001e0f,
+            distortionScale: 3.7,
+            fog: scene.fog !== undefined
+        }
+    );
+
+    water.rotation.x = -Math.PI / 2;
+
+    water.translateZ(270);
+
+    scene.add(water);
+
+
+    /**
+     * Sky
+     */
+    const sun = new THREE.Scene();
+    const sky = new Sky();
+    sky.scale.setScalar(10000);
+    scene.add(sky);
+
+    var uniforms = sky.material.uniforms;
+
+    uniforms['turbidity'].value = 10;
+    uniforms['rayleigh'].value = 2;
+    uniforms['mieCoefficient'].value = 0.005;
+    uniforms['mieDirectionalG'].value = 0.8;
+
+    const parameters = {
+        inclination: 0.49,
+        azimuth: 0.205
+    };
+
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+
+    function updateSun() {
+
+        var theta = Math.PI * (parameters.inclination - 0.5);
+        var phi = 2 * Math.PI * (parameters.azimuth - 0.5);
+
+        sun.x = Math.cos(phi);
+        sun.y = Math.sin(phi) * Math.sin(theta);
+        sun.z = Math.sin(phi) * Math.cos(theta);
+
+        sky.material.uniforms['sunPosition'].value.copy(sun);
+        water.material.uniforms['sunDirection'].value.copy(sun).normalize();
+
+        scene.environment = pmremGenerator.fromScene(sky).texture;
+
+    }
+    updateSun();
+
+    /**
+     * Gui
+     */
+
 
     /**
      * Add trees
      */
 
-    // instantiate a GLTFLoader:
+        // instantiate a GLTFLoader:
     const loader = new GLTFLoader();
 
     loader.load(
@@ -139,7 +226,7 @@ async function main() {
         (object) => {
             for (let x = -50; x < 50; x += 8) {
                 for (let z = -50; z < 50; z += 8) {
-                    
+
                     const px = x + 1 + (6 * Math.random()) - 3;
                     const pz = z + 1 + (6 * Math.random()) - 3;
 
@@ -154,7 +241,7 @@ async function main() {
                                 child.receiveShadow = true;
                             }
                         });
-                        
+
                         tree.position.x = px;
                         tree.position.y = height - 0.01;
                         tree.position.z = pz;
@@ -213,7 +300,7 @@ async function main() {
         backward: false,
         left: false,
         right: false,
-        speed: 0.01
+        speed: 0.3
     };
 
     window.addEventListener('keydown', (e) => {
@@ -251,6 +338,7 @@ async function main() {
     const velocity = new Vector3(0.0, 0.0, 0.0);
 
     let then = performance.now();
+
     function loop(now) {
 
         const delta = now - then;
@@ -290,10 +378,10 @@ async function main() {
 
         requestAnimationFrame(loop);
 
-    };
+    }
 
     loop(performance.now());
 
-}
 
+}
 main(); // Start application
