@@ -19,7 +19,7 @@ import TerrainBufferGeometry from './terrain/TerrainBufferGeometry.js';
 import { GLTFLoader } from './loaders/GLTFLoader.js';
 import { SimplexNoise } from './lib/SimplexNoise.js';
 import { Water } from './objects/Water.js';
-import { Sky } from './objects/Sky.js';
+//import { Sky } from './objects/Sky.js';
 
 
 
@@ -103,8 +103,8 @@ async function main() {
         width,
         heightmapImage,
         // noiseFn: simplex.noise.bind(simplex),
-        numberOfSubdivisions: 256,
-        height: 900
+        numberOfSubdivisions: 128,
+        height: 1100
     });
 
     const grassTexture = new TextureLoader().load('resources/textures/grass_02.png');
@@ -163,7 +163,7 @@ async function main() {
 
     water.rotation.x = -Math.PI / 2;
 
-    water.translateZ(270);
+    water.translateZ(370);
 
     scene.add(water);
 
@@ -171,42 +171,6 @@ async function main() {
     /**
      * Sky
      */
-    const sun = new THREE.Scene();
-    const sky = new Sky();
-    sky.scale.setScalar(10000);
-    scene.add(sky);
-
-    var uniforms = sky.material.uniforms;
-
-    uniforms['turbidity'].value = 10;
-    uniforms['rayleigh'].value = 2;
-    uniforms['mieCoefficient'].value = 0.005;
-    uniforms['mieDirectionalG'].value = 0.8;
-
-    const parameters = {
-        inclination: 0.49,
-        azimuth: 0.205
-    };
-
-    const pmremGenerator = new THREE.PMREMGenerator(renderer);
-
-    function updateSun() {
-
-        var theta = Math.PI * (parameters.inclination - 0.5);
-        var phi = 2 * Math.PI * (parameters.azimuth - 0.5);
-
-        sun.x = Math.cos(phi);
-        sun.y = Math.sin(phi) * Math.sin(theta);
-        sun.z = Math.sin(phi) * Math.cos(theta);
-
-        sky.material.uniforms['sunPosition'].value.copy(sun);
-        water.material.uniforms['sunDirection'].value.copy(sun).normalize();
-
-        scene.environment = pmremGenerator.fromScene(sky).texture;
-
-    }
-    updateSun();
-
 
     /**
      * Add trees
