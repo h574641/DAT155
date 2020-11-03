@@ -1,0 +1,320 @@
+Index: ProsjektDAT155/js/main.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {\r\n    PerspectiveCamera,\r\n    WebGLRenderer,\r\n    PCFSoftShadowMap,\r\n    Scene,\r\n    Mesh,\r\n    TextureLoader,\r\n    RepeatWrapping,\r\n    DirectionalLight,\r\n    Vector3,\r\n    AxesHelper,\r\n} from './lib/three.module.js';\r\n\r\nimport Utilities from './lib/Utilities.js';\r\nimport MouseLookController from './controls/MouseLookController.js';\r\n\r\nimport TextureSplattingMaterial from './materials/TextureSplattingMaterial.js';\r\nimport TerrainBufferGeometry from './terrain/TerrainBufferGeometry.js';\r\nimport { GLTFLoader } from './loaders/GLTFLoader.js';\r\nimport { SimplexNoise } from './lib/SimplexNoise.js';\r\n\r\nasync function main() {\r\n\r\n    const scene = new Scene();\r\n\r\n    const axesHelper = new AxesHelper(15);\r\n    scene.add(axesHelper);\r\n\r\n    const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);\r\n\r\n    const renderer = new WebGLRenderer({ antialias: true });\r\n    renderer.setClearColor(0xffffff);\r\n    renderer.setSize(window.innerWidth, window.innerHeight);\r\n\r\n    renderer.shadowMap.enabled = true;\r\n    renderer.shadowMap.type = PCFSoftShadowMap;\r\n\r\n    /**\r\n     * Handle window resize:\r\n     *  - update aspect ratio.\r\n     *  - update projection matrix\r\n     *  - update renderer size\r\n     */\r\n    window.addEventListener('resize', () => {\r\n        camera.aspect = window.innerWidth / window.innerHeight;\r\n        camera.updateProjectionMatrix();\r\n\r\n        renderer.setSize(window.innerWidth, window.innerHeight);\r\n    }, false);\r\n\r\n    /**\r\n     * Add canvas element to DOM.\r\n     */\r\n    document.body.appendChild(renderer.domElement);\r\n\r\n    /**\r\n     * Add light\r\n     */\r\n    const directionalLight = new DirectionalLight(0xffffff);\r\n    directionalLight.position.set(300, 400, 0);\r\n\r\n    directionalLight.castShadow = true;\r\n\r\n    //Set up shadow properties for the light\r\n    directionalLight.shadow.mapSize.width = 512;\r\n    directionalLight.shadow.mapSize.height = 512;\r\n    directionalLight.shadow.camera.near = 0.5;\r\n    directionalLight.shadow.camera.far = 2000;\r\n\r\n    scene.add(directionalLight);\r\n\r\n    // Set direction\r\n    directionalLight.target.position.set(0, 15, 0);\r\n    scene.add(directionalLight.target);\r\n\r\n    camera.position.z = 70;\r\n    camera.position.y = 55;\r\n    camera.rotation.x -= Math.PI * 0.25;\r\n\r\n\r\n    /**\r\n     * Add terrain:\r\n     * \r\n     * We have to wait for the image file to be loaded by the browser.\r\n     * There are many ways to handle asynchronous flow in your application.\r\n     * We are using the async/await language constructs of Javascript:\r\n     *  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function\r\n     */\r\n    const heightmapImage = await Utilities.loadImage('resources/images/heightmap.png');\r\n    const width = 100;\r\n\r\n    const simplex = new SimplexNoise();\r\n    const terrainGeometry = new TerrainBufferGeometry({\r\n        width,\r\n        heightmapImage,\r\n        // noiseFn: simplex.noise.bind(simplex),\r\n        numberOfSubdivisions: 128,\r\n        height: 20\r\n    });\r\n\r\n    const grassTexture = new TextureLoader().load('resources/textures/grass_02.png');\r\n    grassTexture.wrapS = RepeatWrapping;\r\n    grassTexture.wrapT = RepeatWrapping;\r\n    grassTexture.repeat.set(5000 / width, 5000 / width);\r\n\r\n    const snowyRockTexture = new TextureLoader().load('resources/textures/snowy_rock_01.png');\r\n    snowyRockTexture.wrapS = RepeatWrapping;\r\n    snowyRockTexture.wrapT = RepeatWrapping;\r\n    snowyRockTexture.repeat.set(1500 / width, 1500 / width);\r\n\r\n\r\n    const splatMap = new TextureLoader().load('resources/images/splatmap_01.png');\r\n\r\n    const terrainMaterial = new TextureSplattingMaterial({\r\n        color: 0xffffff,\r\n        shininess: 0,\r\n        textures: [snowyRockTexture, grassTexture],\r\n        splatMaps: [splatMap]\r\n    });\r\n\r\n    const terrain = new Mesh(terrainGeometry, terrainMaterial);\r\n\r\n    terrain.castShadow = true;\r\n    terrain.receiveShadow = true;\r\n\r\n    scene.add(terrain);\r\n\r\n    /**\r\n     * Add trees\r\n     */\r\n\r\n    // instantiate a GLTFLoader:\r\n    const loader = new GLTFLoader();\r\n\r\n    loader.load(\r\n        // resource URL\r\n        'resources/models/kenney_nature_kit/tree_thin.glb',\r\n        // called when resource is loaded\r\n        (object) => {\r\n            for (let x = -50; x < 50; x += 8) {\r\n                for (let z = -50; z < 50; z += 8) {\r\n                    \r\n                    const px = x + 1 + (6 * Math.random()) - 3;\r\n                    const pz = z + 1 + (6 * Math.random()) - 3;\r\n\r\n                    const height = terrainGeometry.getHeightAt(px, pz);\r\n\r\n                    if (height < 5) {\r\n                        const tree = object.scene.children[0].clone();\r\n\r\n                        tree.traverse((child) => {\r\n                            if (child.isMesh) {\r\n                                child.castShadow = true;\r\n                                child.receiveShadow = true;\r\n                            }\r\n                        });\r\n                        \r\n                        tree.position.x = px;\r\n                        tree.position.y = height - 0.01;\r\n                        tree.position.z = pz;\r\n\r\n                        tree.rotation.y = Math.random() * (2 * Math.PI);\r\n\r\n                        tree.scale.multiplyScalar(1.5 + Math.random() * 1);\r\n\r\n                        scene.add(tree);\r\n                    }\r\n\r\n                }\r\n            }\r\n        },\r\n        (xhr) => {\r\n            console.log(((xhr.loaded / xhr.total) * 100) + '% loaded');\r\n        },\r\n        (error) => {\r\n            console.error('Error loading model.', error);\r\n        }\r\n    );\r\n\r\n    /**\r\n     * Set up camera controller:\r\n     */\r\n\r\n    const mouseLookController = new MouseLookController(camera);\r\n\r\n    // We attach a click lister to the canvas-element so that we can request a pointer lock.\r\n    // https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API\r\n    const canvas = renderer.domElement;\r\n\r\n    canvas.addEventListener('click', () => {\r\n        canvas.requestPointerLock();\r\n    });\r\n\r\n    let yaw = 0;\r\n    let pitch = 0;\r\n    const mouseSensitivity = 0.001;\r\n\r\n    function updateCamRotation(event) {\r\n        yaw += event.movementX * mouseSensitivity;\r\n        pitch += event.movementY * mouseSensitivity;\r\n    }\r\n\r\n    document.addEventListener('pointerlockchange', () => {\r\n        if (document.pointerLockElement === canvas) {\r\n            canvas.addEventListener('mousemove', updateCamRotation, false);\r\n        } else {\r\n            canvas.removeEventListener('mousemove', updateCamRotation, false);\r\n        }\r\n    });\r\n\r\n    let move = {\r\n        forward: false,\r\n        backward: false,\r\n        left: false,\r\n        right: false,\r\n        speed: 0.01\r\n    };\r\n\r\n    window.addEventListener('keydown', (e) => {\r\n        if (e.code === 'KeyW') {\r\n            move.forward = true;\r\n            e.preventDefault();\r\n        } else if (e.code === 'KeyS') {\r\n            move.backward = true;\r\n            e.preventDefault();\r\n        } else if (e.code === 'KeyA') {\r\n            move.left = true;\r\n            e.preventDefault();\r\n        } else if (e.code === 'KeyD') {\r\n            move.right = true;\r\n            e.preventDefault();\r\n        }\r\n    });\r\n\r\n    window.addEventListener('keyup', (e) => {\r\n        if (e.code === 'KeyW') {\r\n            move.forward = false;\r\n            e.preventDefault();\r\n        } else if (e.code === 'KeyS') {\r\n            move.backward = false;\r\n            e.preventDefault();\r\n        } else if (e.code === 'KeyA') {\r\n            move.left = false;\r\n            e.preventDefault();\r\n        } else if (e.code === 'KeyD') {\r\n            move.right = false;\r\n            e.preventDefault();\r\n        }\r\n    });\r\n\r\n    const velocity = new Vector3(0.0, 0.0, 0.0);\r\n\r\n    let then = performance.now();\r\n    function loop(now) {\r\n\r\n        const delta = now - then;\r\n        then = now;\r\n\r\n        const moveSpeed = move.speed * delta;\r\n\r\n        velocity.set(0.0, 0.0, 0.0);\r\n\r\n        if (move.left) {\r\n            velocity.x -= moveSpeed;\r\n        }\r\n\r\n        if (move.right) {\r\n            velocity.x += moveSpeed;\r\n        }\r\n\r\n        if (move.forward) {\r\n            velocity.z -= moveSpeed;\r\n        }\r\n\r\n        if (move.backward) {\r\n            velocity.z += moveSpeed;\r\n        }\r\n\r\n        // update controller rotation.\r\n        mouseLookController.update(pitch, yaw);\r\n        yaw = 0;\r\n        pitch = 0;\r\n\r\n        // apply rotation to velocity vector, and translate moveNode with it.\r\n        velocity.applyQuaternion(camera.quaternion);\r\n        camera.position.add(velocity);\r\n\r\n        // render scene:\r\n        renderer.render(scene, camera);\r\n\r\n        requestAnimationFrame(loop);\r\n\r\n    };\r\n\r\n    loop(performance.now());\r\n\r\n}\r\n\r\nmain(); // Start application
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ProsjektDAT155/js/main.js	(revision da9aa9c90b6e3978d902d3fc1caf615e4de867c3)
++++ ProsjektDAT155/js/main.js	(date 1603890606087)
+@@ -35,6 +35,8 @@
+     renderer.shadowMap.enabled = true;
+     renderer.shadowMap.type = PCFSoftShadowMap;
+ 
++
++
+     /**
+      * Handle window resize:
+      *  - update aspect ratio.
+@@ -77,6 +79,15 @@
+     camera.position.y = 55;
+     camera.rotation.x -= Math.PI * 0.25;
+ 
++    // Add skybox
++    const skyboxImage = 'bluecloud';
++    const materialArray = createMaterialArray(skyboxImage);
++
++    let skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
++
++    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
++
++    scene.add(skybox);
+ 
+     /**
+      * Add terrain:
+@@ -200,6 +211,42 @@
+         pitch += event.movementY * mouseSensitivity;
+     }
+ 
++    function createMaterialArray(filename) {
++
++        const skyboxImagepaths = createPathStrings(filename);
++
++        const materialArray = skyboxImagepaths.map(image => {
++
++            let texture = new THREE.TextureLoader().load(image);
++
++            return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide }); // <---
++
++        });
++
++        return materialArray;
++
++    }
++
++    function createPathStrings(filename) {
++
++        const basePath = "resources/images/Skybox/";
++
++        const baseFilename = basePath + filename;
++
++        const fileType = ".jpg";
++
++        const sides = ["ft", "bk", "up", "dn", "rt", "lf"];
++
++        const pathStings = sides.map(side => {
++
++            return baseFilename + "_" + side + fileType;
++
++        });
++
++        return pathStings;
++
++    }
++
+     document.addEventListener('pointerlockchange', () => {
+         if (document.pointerLockElement === canvas) {
+             canvas.addEventListener('mousemove', updateCamRotation, false);
+@@ -248,6 +295,18 @@
+         }
+     });
+ 
++    function animate() {
++
++        skybox.rotation.x += 0.005;
++
++        skybox.rotation.y += 0.005;
++
++        renderer.render(scene, camera);
++
++        requestAnimationFrame(animate);
++
++    }
++
+     const velocity = new Vector3(0.0, 0.0, 0.0);
+ 
+     let then = performance.now();
+@@ -293,7 +352,7 @@
+     };
+ 
+     loop(performance.now());
+-
++    animate();
+ }
+ 
+ main(); // Start application
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/startkode.iml\" filepath=\"$PROJECT_DIR$/.idea/startkode.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/threejs-template-master/.idea/threejs-template-master.iml\" filepath=\"$PROJECT_DIR$/threejs-template-master/.idea/threejs-template-master.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision da9aa9c90b6e3978d902d3fc1caf615e4de867c3)
++++ .idea/modules.xml	(date 1603282528274)
+@@ -3,7 +3,7 @@
+   <component name="ProjectModuleManager">
+     <modules>
+       <module fileurl="file://$PROJECT_DIR$/.idea/startkode.iml" filepath="$PROJECT_DIR$/.idea/startkode.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/threejs-template-master/.idea/threejs-template-master.iml" filepath="$PROJECT_DIR$/threejs-template-master/.idea/threejs-template-master.iml" />
++      <module fileurl="file://$PROJECT_DIR$/ProsjektDAT155/.idea/threejs-template-master.iml" filepath="$PROJECT_DIR$/ProsjektDAT155/.idea/threejs-template-master.iml" />
+     </modules>
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a24e7793-28d5-4cb9-97be-ad477f989e9f\" name=\"Default Changelist\" comment=\"Startkode\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ProsjektDAT155/js/main.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ProsjektDAT155/js/main.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/index.html\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/controls/MouseLookController.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/lib/SimplexNoise.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/lib/Utilities.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/lib/three.module.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/loaders/GLTFLoader.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/main.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/materials/ShaderCustomiser.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/materials/TextureSplattingMaterial.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/js/terrain/TerrainBufferGeometry.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/images/heightmap.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/images/heightmapVol.gif\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/images/splatmap_01.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/models/kenney_nature_kit/License.txt\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/models/kenney_nature_kit/tree_thin.glb\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/textures/grass_01.jpg\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/textures/grass_02.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/textures/rock_01.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/textures/rock_02.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/textures/rock_03.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/oblig6/resources/textures/snowy_rock_01.png\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"Martin &lt;42607090+h574641@users.noreply.github.com&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1jBU4sM5UceOF0jSupU1bjZZx1M\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../../HVL/DAT155/threejs-template-master\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mfoys\\WebstormProjects\\DAT155-Lab6\\startkode\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a24e7793-28d5-4cb9-97be-ad477f989e9f\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1603276791019</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1603276791019</updated>\r\n      <workItem from=\"1603276792123\" duration=\"814000\" />\r\n      <workItem from=\"1603279479987\" duration=\"2388000\" />\r\n      <workItem from=\"1603282009493\" duration=\"401000\" />\r\n    </task>\r\n    <task id=\"LOCAL−00001\" summary=\"Startkode\">\r\n      <created>1603276883975</created>\r\n      <option name=\"number\" value=\"LOCAL−00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00001\" />\r\n      <updated>1603276883975</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00002\" summary=\"Startkode\">\r\n      <created>1603277199515</created>\r\n      <option name=\"number\" value=\"LOCAL−00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00002\" />\r\n      <updated>1603277199515</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00003\" summary=\"Startkode\">\r\n      <created>1603277283372</created>\r\n      <option name=\"number\" value=\"LOCAL−00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00003\" />\r\n      <updated>1603277283372</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Startkode\">\r\n      <created>1603280872163</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1603280872163</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Kommentar\">\r\n      <created>1603281773049</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1603281773049</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Kommentar\">\r\n      <created>1603282021963</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1603282021964</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Kommentar\" />\r\n    <MESSAGE value=\"Startkode\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Startkode\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"562\" y=\"115\" key=\"CommitChangelistDialog2\" timestamp=\"1603277280939\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"562\" y=\"115\" key=\"CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1603277280939\" />\r\n    <state x=\"987\" y=\"369\" key=\"FileChooserDialogImpl\" timestamp=\"1603279513294\">\r\n      <screen x=\"0\" y=\"0\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"740\" y=\"274\" key=\"FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1603276847368\" />\r\n    <state x=\"987\" y=\"369\" key=\"FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400\" timestamp=\"1603279513294\" />\r\n    <state x=\"784\" y=\"439\" key=\"Github.CreateGistDialog\" timestamp=\"1603277035263\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"784\" y=\"439\" key=\"Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1603277035263\" />\r\n    <state x=\"219\" y=\"47\" key=\"MergeDialog\" timestamp=\"1603282200259\">\r\n      <screen x=\"0\" y=\"0\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"219\" y=\"47\" key=\"MergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400\" timestamp=\"1603282200259\" />\r\n    <state x=\"1258\" y=\"330\" key=\"MultipleFileMergeDialog\" timestamp=\"1603282201480\">\r\n      <screen x=\"0\" y=\"0\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"1258\" y=\"330\" key=\"MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400\" timestamp=\"1603282201480\" />\r\n    <state x=\"736\" y=\"339\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1603282137123\">\r\n      <screen x=\"0\" y=\"0\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"552\" y=\"252\" key=\"Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1603277289792\" />\r\n    <state x=\"736\" y=\"339\" key=\"Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400\" timestamp=\"1603282137123\" />\r\n    <state x=\"1437\" y=\"482\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1603282238931\">\r\n      <screen x=\"0\" y=\"0\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"1437\" y=\"482\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400\" timestamp=\"1603282238931\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision da9aa9c90b6e3978d902d3fc1caf615e4de867c3)
++++ .idea/workspace.xml	(date 1603975698229)
+@@ -1,48 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="BranchesTreeState">
+-    <expand>
+-      <path>
+-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-      </path>
+-      <path>
+-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-      </path>
+-      <path>
+-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+-      </path>
+-    </expand>
+-    <select />
+-  </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="Startkode">
++    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/index.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/controls/MouseLookController.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/SimplexNoise.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/Utilities.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/lib/three.module.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/loaders/GLTFLoader.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/main.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/materials/ShaderCustomiser.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/materials/TextureSplattingMaterial.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/js/terrain/TerrainBufferGeometry.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/heightmap.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/heightmapVol.gif" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/images/splatmap_01.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/models/kenney_nature_kit/License.txt" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/models/kenney_nature_kit/tree_thin.glb" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/grass_01.jpg" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/grass_02.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_01.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_02.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/rock_03.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/oblig6/resources/textures/snowy_rock_01.png" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -58,6 +20,9 @@
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="ProjectId" id="1jBU4sM5UceOF0jSupU1bjZZx1M" />
++  <component name="ProjectLevelVcsManager">
++    <OptionsSetting value="false" id="Update" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+@@ -66,13 +31,23 @@
+     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../HVL/DAT155/threejs-template-master" />
++    <property name="last_opened_file_path" value="$USER_HOME$/Mine dokumenter" />
+     <property name="vue.rearranger.settings.migration" value="true" />
+   </component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\mfoys\WebstormProjects\DAT155-Lab6\startkode" />
+     </key>
++  </component>
++  <component name="RunManager">
++    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/startkode/index.html" useBuiltInWebServerPort="true">
++      <method v="2" />
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="JavaScript Debug.index.html" />
++      </list>
++    </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -83,8 +58,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1603276791019</updated>
+       <workItem from="1603276792123" duration="814000" />
+-      <workItem from="1603279479987" duration="2388000" />
+-      <workItem from="1603282009493" duration="401000" />
++      <workItem from="1603883097896" duration="6148000" />
+     </task>
+     <task id="LOCAL−00001" summary="Startkode">
+       <created>1603276883975</created>
+@@ -104,47 +78,13 @@
+       <option name="presentableId" value="LOCAL−00003" />
+       <updated>1603277283372</updated>
+     </task>
+-    <task id="LOCAL-00004" summary="Startkode">
+-      <created>1603280872163</created>
+-      <option name="number" value="00004" />
+-      <option name="presentableId" value="LOCAL-00004" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1603280872163</updated>
+-    </task>
+-    <task id="LOCAL-00005" summary="Kommentar">
+-      <created>1603281773049</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1603281773049</updated>
+-    </task>
+-    <task id="LOCAL-00006" summary="Kommentar">
+-      <created>1603282021963</created>
+-      <option name="number" value="00006" />
+-      <option name="presentableId" value="LOCAL-00006" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1603282021964</updated>
+-    </task>
+-    <option name="localTasksCounter" value="7" />
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
+-  <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State />
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-    <option name="oldMeFiltersMigrated" value="true" />
+-  </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="Kommentar" />
+     <MESSAGE value="Startkode" />
+     <option name="LAST_COMMIT_MESSAGE" value="Startkode" />
+   </component>
+@@ -153,31 +93,21 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277280939" />
+-    <state x="987" y="369" key="FileChooserDialogImpl" timestamp="1603279513294">
+-      <screen x="0" y="0" width="2560" height="1400" />
++    <state x="1199" y="389" key="FileChooserDialogImpl" timestamp="1603887756454">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603276847368" />
+-    <state x="987" y="369" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603279513294" />
++    <state x="1199" y="389" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603887756453" />
+     <state x="784" y="439" key="Github.CreateGistDialog" timestamp="1603277035263">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="784" y="439" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603277035263" />
+-    <state x="219" y="47" key="MergeDialog" timestamp="1603282200259">
+-      <screen x="0" y="0" width="2560" height="1400" />
+-    </state>
+-    <state x="219" y="47" key="MergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282200259" />
+-    <state x="1258" y="330" key="MultipleFileMergeDialog" timestamp="1603282201480">
+-      <screen x="0" y="0" width="2560" height="1400" />
+-    </state>
+-    <state x="1258" y="330" key="MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282201480" />
+-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1603282137123">
+-      <screen x="0" y="0" width="2560" height="1400" />
++    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1603277289792">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277289792" />
+-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282137123" />
+-    <state x="1437" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603282238931">
+-      <screen x="0" y="0" width="2560" height="1400" />
++    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603283247535">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="1437" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282238931" />
++    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603283247535" />
+   </component>
+ </project>
+\ No newline at end of file
