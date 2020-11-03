@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="" />
+    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +122,13 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1604419727548</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL−00008" summary="Har lagt til roterende skybox">
+      <created>1604420010868</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1604420010868</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,10 +153,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Har lagt til roterende skybox" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1604419725936">
+    <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1604420008475">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604419725936" />
+    <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604420008475" />
     <state x="987" y="369" key="FileChooserDialogImpl" timestamp="1603279513294">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -166,10 +174,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1258" y="330" key="MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282201480" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1604419730465">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1604420015006">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604419730465" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604420015006" />
     <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282137123" />
     <state x="1437" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603282238931">
       <screen x="0" y="0" width="2560" height="1400" />
