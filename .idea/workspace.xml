@@ -19,11 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="Endret til vulkan med vann">
-      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/js/objects/Water2.js" afterDir="false" />
+    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/terrain/TerrainBufferGeometry.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/terrain/TerrainBufferGeometry.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +38,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1jBU4sM5UceOF0jSupU1bjZZx1M" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -47,7 +49,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../HVL/DAT155/threejs-template-master" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -56,7 +58,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DAT155-Lab6/ProsjektDAT155/index.html" useBuiltInWebServerPort="true">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/startkode/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -75,14 +77,7 @@
       <updated>1603276791019</updated>
       <workItem from="1603276792123" duration="814000" />
       <workItem from="1603279479987" duration="2388000" />
-      <workItem from="1603282009493" duration="1053000" />
-      <workItem from="1603711281730" duration="18070000" />
-      <workItem from="1604004063352" duration="1809000" />
-      <workItem from="1604005894231" duration="9466000" />
-      <workItem from="1604015768130" duration="671000" />
-      <workItem from="1604056639561" duration="2681000" />
-      <workItem from="1604318070337" duration="790000" />
-      <workItem from="1604319776265" duration="3188000" />
+      <workItem from="1603282009493" duration="401000" />
     </task>
     <task id="LOCAL−00001" summary="Startkode">
       <created>1603276883975</created>
@@ -123,49 +118,11 @@
       <option name="project" value="LOCAL" />
       <updated>1603282021964</updated>
     </task>
-    <task id="LOCAL-00007" summary="Startkode">
-      <created>1603282441476</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1603282441476</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Endret til vulkan med vann">
-      <created>1604014682217</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1604014682217</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Endret til vulkan med vann">
-      <created>1604015174784</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1604015174784</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Endret til vulkan med vann">
-      <created>1604015313943</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1604015313943</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -182,88 +139,35 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Kommentar" />
     <MESSAGE value="Startkode" />
-    <MESSAGE value="Endret til vulkan med vann" />
-    <option name="LAST_COMMIT_MESSAGE" value="Endret til vulkan med vann" />
+    <option name="LAST_COMMIT_MESSAGE" value="Startkode" />
   </component>
   <component name="WindowStateProjectService">
     <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1603277280939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277280939" />
-    <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog" timestamp="1604015113994">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="92" y="92" width="2376" height="1216" key="DiffContextDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604015113994" />
-    <state x="987" y="369" key="FileChooserDialogImpl" timestamp="1604015779749">
+    <state x="987" y="369" key="FileChooserDialogImpl" timestamp="1603279513294">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603276847368" />
-    <state x="987" y="369" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604015779749" />
+    <state x="987" y="369" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603279513294" />
     <state x="784" y="439" key="Github.CreateGistDialog" timestamp="1603277035263">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="784" y="439" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603277035263" />
-    <state width="1032" height="434" key="GridCell.Tab.0.bottom" timestamp="1604323081852">
+    <state x="219" y="47" key="MergeDialog" timestamp="1603282200259">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1032" height="434" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.0.center" timestamp="1604323081852">
+    <state x="219" y="47" key="MergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282200259" />
+    <state x="1258" y="330" key="MultipleFileMergeDialog" timestamp="1603282201480">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1032" height="434" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.0.left" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.0.right" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.1.bottom" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.1.center" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.1.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.1.left" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.1.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.1.right" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.1.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.2.bottom" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.2.center" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.2.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.2.left" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.2.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state width="1032" height="434" key="GridCell.Tab.2.right" timestamp="1604323081852">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1032" height="434" key="GridCell.Tab.2.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604323081852" />
-    <state x="219" y="47" key="MergeDialog" timestamp="1603282428619">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="219" y="47" key="MergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282428619" />
-    <state x="1258" y="330" key="MultipleFileMergeDialog" timestamp="1603282428623">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1258" y="330" key="MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282428623" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1604015320713">
+    <state x="1258" y="330" key="MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282201480" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1603282137123">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603277289792" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1604015320713" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282137123" />
     <state x="1437" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603282238931">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

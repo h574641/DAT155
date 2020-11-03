@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/startkode.iml" filepath="$PROJECT_DIR$/.idea/startkode.iml" />
-      <module fileurl="file://$PROJECT_DIR$/threejs-template-master/.idea/threejs-template-master.iml" filepath="$PROJECT_DIR$/threejs-template-master/.idea/threejs-template-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProsjektDAT155/.idea/threejs-template-master.iml" filepath="$PROJECT_DIR$/ProsjektDAT155/.idea/threejs-template-master.iml" />
     </modules>
   </component>
 </project>
