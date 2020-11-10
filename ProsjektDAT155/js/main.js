@@ -23,7 +23,6 @@ import { Water } from './objects/Water.js';
 
 
 
-
 async function main() {
 
     const scene = new Scene();
@@ -86,16 +85,6 @@ async function main() {
     camera.position.z = 750;
     camera.position.y = 600;
     camera.rotation.x -= Math.PI * 0.25;
-
-    // Add skybox
-    const skyboxImage = 'bluecloud';
-    const materialArray = createMaterialArray(skyboxImage);
-
-    let skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
-
-    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
-
-    scene.add(skybox);
 
 
     /**
@@ -182,7 +171,14 @@ async function main() {
     /**
      * Sky
      */
+    const skyboxImage = 'bluecloud';
+    const materialArray = createMaterialArray(skyboxImage);
 
+    let skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
+
+    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
+
+    scene.add(skybox);
     /**
      * Add trees
      */
@@ -251,7 +247,7 @@ async function main() {
 
     let yaw = 0;
     let pitch = 0;
-    const mouseSensitivity = 0.001;
+    const mouseSensitivity = 0.0001;
 
     function updateCamRotation(event) {
         yaw += event.movementX * mouseSensitivity;
