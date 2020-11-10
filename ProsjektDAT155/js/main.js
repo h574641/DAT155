@@ -95,8 +95,8 @@ async function main() {
      * We are using the async/await language constructs of Javascript:
      *  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
      */
-    const heightmapImage = await Utilities.loadImage('resources/images/heightmapVL2.png');
-    const width = 2000;
+    const heightmapImage = await Utilities.loadImage('resources/images/heightmapVL2.1.png');
+    const width = 3000;
 
     const simplex = new SimplexNoise();
     const terrainGeometry = new TerrainBufferGeometry({
@@ -104,7 +104,7 @@ async function main() {
         heightmapImage,
         // noiseFn: simplex.noise.bind(simplex),
         numberOfSubdivisions: 128,
-        height: 1100
+        height: 1200
     });
 
     const grassTexture = new TextureLoader().load('resources/textures/grass_02.png');
@@ -112,13 +112,13 @@ async function main() {
     grassTexture.wrapT = RepeatWrapping;
     grassTexture.repeat.set(30000 / width, 30000 / width);
 
-    const snowyRockTexture = new TextureLoader().load('resources/textures/snowy_rock_01.png');
+    const snowyRockTexture = new TextureLoader().load('resources/textures/rock_03.png');
     snowyRockTexture.wrapS = RepeatWrapping;
     snowyRockTexture.wrapT = RepeatWrapping;
     snowyRockTexture.repeat.set(15000 / width, 15000 / width);
 
 
-    const splatMap = new TextureLoader().load('resources/images/splatmap_01.png');
+    const splatMap = new TextureLoader().load('resources/images/splatmap_03.png');
 
     const terrainMaterial = new TextureSplattingMaterial({
         color: 0xffffff,
@@ -140,7 +140,7 @@ async function main() {
      * Water
      */
 
-    const waterGeometry = new THREE.PlaneBufferGeometry(2000, 2000);
+    const waterGeometry = new THREE.PlaneBufferGeometry(3000, 1900);
 
     const water = new Water(
         waterGeometry,
