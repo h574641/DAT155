@@ -21,8 +21,6 @@ import { SimplexNoise } from './lib/SimplexNoise.js';
 import { Water } from './objects/Water.js';
 //import { Sky } from './objects/Sky.js';
 
-
-
 async function main() {
 
     const scene = new Scene();
@@ -82,8 +80,8 @@ async function main() {
     directionalLight.target.position.set(0, 15, 0);
     scene.add(directionalLight.target);
 
-    camera.position.z = 750;
-    camera.position.y = 600;
+    camera.position.z = 1500;
+    camera.position.y = 1500;
     camera.rotation.x -= Math.PI * 0.25;
 
 
@@ -171,14 +169,7 @@ async function main() {
     /**
      * Sky
      */
-    const skyboxImage = 'bluecloud';
-    const materialArray = createMaterialArray(skyboxImage);
 
-    let skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
-
-    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
-
-    scene.add(skybox);
     /**
      * Add trees
      */
@@ -230,6 +221,16 @@ async function main() {
             console.error('Error loading model.', error);
         }
     );
+
+    // Skybox
+    const skyboxImage = 'bluecloud';
+    const materialArray = createMaterialArray(skyboxImage);
+
+    let skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
+
+    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
+
+    scene.add(skybox);
 
     /**
      * Set up camera controller:
