@@ -19,9 +19,8 @@ import TerrainBufferGeometry from './terrain/TerrainBufferGeometry.js';
 import { GLTFLoader } from './loaders/GLTFLoader.js';
 import { SimplexNoise } from './lib/SimplexNoise.js';
 import { Water } from './objects/Water.js';
+import {GUI} from './lib/dat.gui.module.js';
 //import { Sky } from './objects/Sky.js';
-
-
 
 async function main() {
 
@@ -82,8 +81,8 @@ async function main() {
     directionalLight.target.position.set(0, 15, 0);
     scene.add(directionalLight.target);
 
-    camera.position.z = 750;
-    camera.position.y = 600;
+    camera.position.z = 1500;
+    camera.position.y = 1500;
     camera.rotation.x -= Math.PI * 0.25;
 
 
@@ -140,7 +139,7 @@ async function main() {
      * Water
      */
 
-    const waterGeometry = new THREE.PlaneBufferGeometry(3000, 1900);
+    const waterGeometry = new THREE.PlaneBufferGeometry(3000, 3000);
 
     const water = new Water(
         waterGeometry,
@@ -167,18 +166,71 @@ async function main() {
 
     scene.add(water);
 
+    /**
+     * GUI
+     */
+    var gui = new GUI();
+
+    var uniforms = water.material.uniforms;
+
+    var folder = gui.addFolder( 'Water' );
+    folder.add( uniforms.distortionScale, 'value', 0, 8, 0.1 ).name( 'distortionScale' );
+    folder.add( uniforms.size, 'value', 0.1, 10, 0.1 ).name( 'size' );
+    folder.add( uniforms.alpha, 'value', 0.9, 1, .001 ).name( 'alpha' );
+    folder.open();
 
     /**
-     * Sky
+     * Hus
      */
-    const skyboxImage = 'bluecloud';
-    const materialArray = createMaterialArray(skyboxImage);
+    // instantiate a GLTFLoader:
+    const loader2 = new GLTFLoader();
 
-    let skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
+    loader2.load(
+        // resource URL
+        'resources/models/Hus.glb',
+        // called when resource is loaded
+        (object) => {
+            //for (let x = 1000; x < 1050; x += 50) {
+            // for (let z = 1000; z < 1050; z += 50) {
 
-    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
+            //const px = x + 1 + (6 * Math.random()) - 3;
+            //const pz = z + 1 + (6 * Math.random()) - 3;
+            const px = 1200;
+            const pz = 1200;
+            const height = terrainGeometry.getHeightAt(px, pz);
 
-    scene.add(skybox);
+            //if (height > 420 /*&& height < 480*/) {
+            const hus = object.scene/*.children[0].clone()*/;
+            /*
+            hus.traverse((child) => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                }
+            });*/
+
+            hus.position.x = px;
+            hus.position.y = height - 0.01;
+            hus.position.z = pz;
+
+            hus.rotation.y = Math.random() * (2 * Math.PI);
+
+            hus.scale.multiplyScalar(5);
+
+            scene.add(hus);
+            //}
+
+            //}
+            //}
+        },
+        (xhr) => {
+            console.log(((xhr.loaded / xhr.total) * 100) + '% loaded');
+        },
+        (error) => {
+            console.error('Error loading model.', error);
+        }
+    );
+
     /**
      * Add trees
      */
@@ -191,15 +243,15 @@ async function main() {
         'resources/models/kenney_nature_kit/tree_thin.glb',
         // called when resource is loaded
         (object) => {
-            for (let x = -50; x < 50; x += 8) {
-                for (let z = -50; z < 50; z += 8) {
+            for (let x = -1500; x < 1500; x += 30) {
+                for (let z = -1500; z < 1500; z += 30) {
 
                     const px = x + 1 + (6 * Math.random()) - 3;
                     const pz = z + 1 + (6 * Math.random()) - 3;
 
                     const height = terrainGeometry.getHeightAt(px, pz);
 
-                    if (height < 5) {
+                    if (height > 370 && height < 510) {
                         const tree = object.scene.children[0].clone();
 
                         tree.traverse((child) => {
@@ -215,7 +267,7 @@ async function main() {
 
                         tree.rotation.y = Math.random() * (2 * Math.PI);
 
-                        tree.scale.multiplyScalar(1.5 + Math.random() * 1);
+                        tree.scale.multiplyScalar(50 + Math.random() * 25);
 
                         scene.add(tree);
                     }
@@ -230,6 +282,16 @@ async function main() {
             console.error('Error loading model.', error);
         }
     );
+
+    // Skybox
+    const skyboxImage = 'bluecloud';
+    const materialArray = createMaterialArray(skyboxImage);
+
+    let skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
+
+    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
+
+    scene.add(skybox);
 
     /**
      * Set up camera controller:
@@ -247,7 +309,7 @@ async function main() {
 
     let yaw = 0;
     let pitch = 0;
-    const mouseSensitivity = 0.0001;
+    const mouseSensitivity = 0.001;
 
     function updateCamRotation(event) {
         yaw += event.movementX * mouseSensitivity;
@@ -387,6 +449,9 @@ async function main() {
         // apply rotation to velocity vector, and translate moveNode with it.
         velocity.applyQuaternion(camera.quaternion);
         camera.position.add(velocity);
+
+        // water movement
+        water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
         // render scene:
         renderer.render(scene, camera);
