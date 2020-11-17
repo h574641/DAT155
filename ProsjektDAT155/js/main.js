@@ -138,7 +138,7 @@ async function main() {
      * Water
      */
 
-    const waterGeometry = new THREE.PlaneBufferGeometry(3000, 1900);
+    const waterGeometry = new THREE.PlaneBufferGeometry(3000, 3000);
 
     const water = new Water(
         waterGeometry,
@@ -182,15 +182,15 @@ async function main() {
         'resources/models/kenney_nature_kit/tree_thin.glb',
         // called when resource is loaded
         (object) => {
-            for (let x = -50; x < 50; x += 8) {
-                for (let z = -50; z < 50; z += 8) {
+            for (let x = -1500; x < 1500; x += 30) {
+                for (let z = -1500; z < 1500; z += 30) {
 
                     const px = x + 1 + (6 * Math.random()) - 3;
                     const pz = z + 1 + (6 * Math.random()) - 3;
 
                     const height = terrainGeometry.getHeightAt(px, pz);
 
-                    if (height < 5) {
+                    if (height > 370 && height < 510) {
                         const tree = object.scene.children[0].clone();
 
                         tree.traverse((child) => {
@@ -206,7 +206,7 @@ async function main() {
 
                         tree.rotation.y = Math.random() * (2 * Math.PI);
 
-                        tree.scale.multiplyScalar(1.5 + Math.random() * 1);
+                        tree.scale.multiplyScalar(50 + Math.random() * 25);
 
                         scene.add(tree);
                     }
