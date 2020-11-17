@@ -19,6 +19,7 @@ import TerrainBufferGeometry from './terrain/TerrainBufferGeometry.js';
 import { GLTFLoader } from './loaders/GLTFLoader.js';
 import { SimplexNoise } from './lib/SimplexNoise.js';
 import { Water } from './objects/Water.js';
+import {GUI} from './lib/dat.gui.module.js';
 //import { Sky } from './objects/Sky.js';
 
 async function main() {
@@ -165,10 +166,18 @@ async function main() {
 
     scene.add(water);
 
-
     /**
-     * Sky
+     * GUI
      */
+    var gui = new GUI();
+
+    var uniforms = water.material.uniforms;
+
+    var folder = gui.addFolder( 'Water' );
+    folder.add( uniforms.distortionScale, 'value', 0, 8, 0.1 ).name( 'distortionScale' );
+    folder.add( uniforms.size, 'value', 0.1, 10, 0.1 ).name( 'size' );
+    folder.add( uniforms.alpha, 'value', 0.9, 1, .001 ).name( 'alpha' );
+    folder.open();
 
     /**
      * Add trees
@@ -248,7 +257,7 @@ async function main() {
 
     let yaw = 0;
     let pitch = 0;
-    const mouseSensitivity = 0.0001;
+    const mouseSensitivity = 0.001;
 
     function updateCamRotation(event) {
         yaw += event.movementX * mouseSensitivity;
@@ -388,6 +397,9 @@ async function main() {
         // apply rotation to velocity vector, and translate moveNode with it.
         velocity.applyQuaternion(camera.quaternion);
         camera.position.add(velocity);
+
+        // water movement
+        water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
         // render scene:
         renderer.render(scene, camera);

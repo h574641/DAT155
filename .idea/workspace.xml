@@ -20,9 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_11_2020_16_44_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_11_2020_16_44__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,12 +55,16 @@
       <recent name="C:\Users\mfoys\WebstormProjects\DAT155-Lab6\startkode" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DAT155/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/startkode/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -81,6 +82,7 @@
       <workItem from="1603282009493" duration="401000" />
       <workItem from="1605216637033" duration="1289000" />
       <workItem from="1605376504294" duration="1972000" />
+      <workItem from="1605622804372" duration="595000" />
     </task>
     <task id="LOCAL−00001" summary="Startkode">
       <created>1603276883975</created>
@@ -171,6 +173,54 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="784" y="439" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603277035263" />
+    <state width="874" height="435" key="GridCell.Tab.0.bottom" timestamp="1605623375540">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375540" />
+    <state width="874" height="435" key="GridCell.Tab.0.center" timestamp="1605623375540">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375540" />
+    <state width="874" height="435" key="GridCell.Tab.0.left" timestamp="1605623375539">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375539" />
+    <state width="874" height="435" key="GridCell.Tab.0.right" timestamp="1605623375540">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375540" />
+    <state width="874" height="435" key="GridCell.Tab.1.bottom" timestamp="1605623375541">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375541" />
+    <state width="874" height="435" key="GridCell.Tab.1.center" timestamp="1605623375540">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.1.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375540" />
+    <state width="874" height="435" key="GridCell.Tab.1.left" timestamp="1605623375540">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.1.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375540" />
+    <state width="874" height="435" key="GridCell.Tab.1.right" timestamp="1605623375540">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.1.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375540" />
+    <state width="874" height="435" key="GridCell.Tab.2.bottom" timestamp="1605623375541">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375541" />
+    <state width="874" height="435" key="GridCell.Tab.2.center" timestamp="1605623375541">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.2.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375541" />
+    <state width="874" height="435" key="GridCell.Tab.2.left" timestamp="1605623375541">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.2.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375541" />
+    <state width="874" height="435" key="GridCell.Tab.2.right" timestamp="1605623375541">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="874" height="435" key="GridCell.Tab.2.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605623375541" />
     <state x="219" y="47" key="MergeDialog" timestamp="1603282200259">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
