@@ -232,32 +232,18 @@ async function main() {
 
         //postprocessing
 
-        let effectParams = {
-            bloomStrength: 3,
-            noiseIntensity: 0.35,
-            scanlinesIntensity: 0.95,
-            scanlinesCount: 2048,
-            grayscale: false
-        }
 
-        const renderModel = new RenderPass(scene, camera);
-        const effectBloom = new BloomPass(
-            {
-            strength: effectParams.bloomStrength,
-        });
-        const effectFilm = new FilmPass({
-            noiseIntensity: effectParams.noiseIntensity,
-            scanlinesIntensity: effectParams.scanlinesIntensity,
-            scanlinesCount: effectParams.scanlinesCount,
-            grayscale: effectParams.grayscale
-        });
+        const composer = new EffectComposer( renderer );
 
-        let composer = new EffectComposer(renderer);
 
-        composer.addPass(renderModel);
-        composer.addPass(effectBloom);
-        composer.addPass(effectFilm);
+        const effectBloom = new BloomPass( 1.25 );
+        const effectFilm = new FilmPass( 0.35, 0.95, 2048, false );
+        const renderModel = new RenderPass( scene, camera);
 
+
+            composer.addPass( effectBloom );
+            composer.addPass( effectFilm );
+            composer.addPass( renderModel );
 
 
     /**
@@ -335,6 +321,9 @@ async function main() {
     lavaFolder.add( lavaUniforms.fogDensity, 'value', 0, 0.007, 0.0001).name('fogDensity');
     lavaFolder.open();
 
+    /*
+
+
     const bloomFolder = gui.addFolder('Bloom');
     bloomFolder.add(effectParams, 'bloomStrength', 0.0, 200.0).onChange( function ( value){
         effectBloom.strength = Number( value );
@@ -346,6 +335,7 @@ async function main() {
         effectFilm.scanlinesIntensity = Number(value);
     })
     folder.open();
+    */
     /**
      * Hus
      */
@@ -690,13 +680,6 @@ async function main() {
         velocity.applyQuaternion(camera.quaternion);
         camera.position.add(velocity);
 
-
-
-
-
-    }
-    function render() {
-
         //lava movement
         let deltaLava = 5 * clock.getDelta();
 
@@ -706,6 +689,10 @@ async function main() {
         // water movement
         water.material.uniforms['time'].value += 1.0 / 60.0;
 
+
+
+    }
+    function render() {
 
 
         renderer.clear();
