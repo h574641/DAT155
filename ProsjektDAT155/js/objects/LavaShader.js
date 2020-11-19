@@ -5,12 +5,12 @@ export default class LavaShader extends ShaderMaterial {
 
     constructor({
                 uniforms: {
-                    fogDensity = null,
-                    fogColor = null,
-                    time = null,
-                    uvScale = null,
-                    texture1 = null,
-                    texture2 = null
+                    fogDensity = 'fogDensity',
+                    fogColor = 'fogColor',
+                    time = 'time',
+                    uvScale = 'uvScale',
+                    texture1 = 'texture1',
+                    texture2 = 'texture2'
                 }
                 }) {
 

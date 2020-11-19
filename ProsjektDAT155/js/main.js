@@ -215,9 +215,7 @@ async function main() {
 
         //lava movement
 
-        //let delta = 5 * clock.getDelta();
 
-        //lavaMaterial.uniforms.value.time += 10 * delta;
 
 
         const lavaPlane = new Mesh(lavaGeometry, lavaMaterial);
@@ -239,6 +237,8 @@ async function main() {
         composer.addPass(renderModel);
         composer.addPass(effectBloom);
         composer.addPass(effectFilm);
+
+
 
     /**
      * Smoke
@@ -580,19 +580,22 @@ async function main() {
         camera.position.add(velocity);
 
 
-        // water movement
-        water.material.uniforms['time'].value += 1.0 / 60.0;
 
-        //lava movement
-        //let deltaLava = 5 * clock.getDelta();
-
-        //lavaMaterial.time += 10 * deltaLava;
-
-        //
 
 
     }
     function render() {
+
+        //lava movement
+        let deltaLava = 5 * clock.getDelta();
+
+        lavaMaterial.uniforms['time'].value += 0.2 * deltaLava;
+
+        //
+
+
+        // water movement
+        water.material.uniforms['time'].value += 1.0 / 60.0;
 
 
 
