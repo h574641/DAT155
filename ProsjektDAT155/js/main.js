@@ -8,7 +8,7 @@ import {
     RepeatWrapping,
     DirectionalLight,
     Vector3,
-    AxesHelper, AmbientLight, AmbientLightProbe,
+    AxesHelper,
 } from './lib/three.module.js';
 import * as THREE from './lib/three.module.js';
 import Utilities from './lib/Utilities.js';
@@ -25,7 +25,7 @@ import {RenderPass} from "./postprocessing/RenderPass.js";
 import {BloomPass} from "./postprocessing/BloomPass.js";
 import {FilmPass} from "./postprocessing/FilmPass.js";
 import {EffectComposer} from "./postprocessing/EffectComposer.js";
-//import { Sky } from './objects/Sky.js';
+
 
 
 async function main() {
@@ -77,9 +77,9 @@ async function main() {
      * Add light
      */
     const directionalLight = new DirectionalLight(0xffffff);
-    const ambientLight = new AmbientLightProbe(0xffffff, 0.1);
+    //const ambientLight = new AmbientLightProbe(0xffffff, 0.3);
     directionalLight.position.set(300, 400, 2200);
-    ambientLight.position.set(0,0, 400);
+    //ambientLight.position.set(0,0, 300);
 
     directionalLight.castShadow = true;
 
@@ -90,7 +90,7 @@ async function main() {
     directionalLight.shadow.camera.far = 2000;
 
     scene.add(directionalLight);
-    scene.add(ambientLight);
+    //scene.add(ambientLight);
 
 
     //Set direction
@@ -203,7 +203,7 @@ async function main() {
                 vertexShader: LavaShader.vertexShader,
                 fragmentShader: LavaShader.fragmentShader,
                 uniforms: {
-                    fogDensity: 0.001,
+                    fogDensity: 0.0001,
                     fogColor: new THREE.Vector3(0, 0, 0),
                     time: 1.0,
                     uvScale: new THREE.Vector2(3.0, 1),
@@ -229,7 +229,7 @@ async function main() {
 
 
         const renderModel = new RenderPass(scene, camera);
-        const effectBloom = new BloomPass(3.25);
+        const effectBloom = new BloomPass(2.25);
         const effectFilm = new FilmPass(0.35, 0.95, 2048, false);
 
         composer = new EffectComposer(renderer);
@@ -303,6 +303,12 @@ async function main() {
     folder.add( uniforms.size, 'value', 0.1, 10, 0.1 ).name( 'size' );
     folder.add( uniforms.alpha, 'value', 0.9, 1, .001 ).name( 'alpha' );
     folder.open();
+
+    let lavaUniforms = lavaMaterial.uniforms;
+
+    const lavaFolder = gui.addFolder('Lava');
+    lavaFolder.add( lavaUniforms.time, 'value', 0, 10, 0.1).name('time');
+    lavaFolder.open();
 
     /**
      * Hus
@@ -589,7 +595,7 @@ async function main() {
         //lava movement
         let deltaLava = 5 * clock.getDelta();
 
-        lavaMaterial.uniforms['time'].value += 0.2 * deltaLava;
+        lavaMaterial.uniforms['time'].value += 0.1 * deltaLava;
 
         //
 
