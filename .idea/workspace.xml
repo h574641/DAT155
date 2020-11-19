@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="yesyes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="yesyes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +100,7 @@
       <workItem from="1605577443151" duration="5480000" />
       <workItem from="1605584810548" duration="15768000" />
       <workItem from="1605622843373" duration="3921000" />
-      <workItem from="1605788550062" duration="7046000" />
+      <workItem from="1605788550062" duration="7368000" />
     </task>
     <task id="LOCAL−00001" summary="Startkode">
       <created>1603276883975</created>
@@ -175,7 +173,13 @@
       <option name="presentableId" value="LOCAL−00011" />
       <updated>1605822737098</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL−00012" summary="yesyes">
+      <created>1605823778763</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1605823778763</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,12 +296,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1180" y="465" key="VCS.ChangeListViewerDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605624676111" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605822749567">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605823784631">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604420015006" />
     <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605011756400" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605822749567" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605823784631" />
     <state x="702" y="466" key="VcsDiffUtil.ChangesDialog" timestamp="1605624497884">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
