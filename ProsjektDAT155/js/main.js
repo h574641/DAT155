@@ -52,6 +52,8 @@ async function main() {
 
 
 
+
+
     /**
      * Handle window resize:
      *  - update aspect ratio.
@@ -110,8 +112,8 @@ async function main() {
      * We are using the async/await language constructs of Javascript:
      *  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
      */
-    const heightmapImage = await Utilities.loadImage('resources/images/heightmapVL2.1.png');
-    const width = 3000;
+    const heightmapImage = await Utilities.loadImage('resources/images/heightmapVL2.2.png');
+    const width = 3500;
 
     const simplex = new SimplexNoise();
     const terrainGeometry = new TerrainBufferGeometry({
@@ -163,7 +165,7 @@ async function main() {
      * Water
      */
 
-    const waterGeometry = new THREE.PlaneGeometry(3000, 3000);
+    const waterGeometry = new THREE.PlaneGeometry(20000, 20000);
 
     const water = new Water(
         waterGeometry,
@@ -309,6 +311,10 @@ async function main() {
     }
 
 
+
+
+
+
     /**
      * GUI
      */
@@ -391,6 +397,43 @@ async function main() {
             console.error('Error loading model.', error);
         }
     );
+
+
+    /**
+     * Sphere med Bumpmapping
+     *
+     */
+
+
+    const loader3 = new THREE.TextureLoader();
+
+    loader3.load( 'resources/textures/4k_sphere.jpg', function (texture){
+
+
+        const geometry = new THREE.SphereGeometry(100, 200, 200);
+
+        const material = new THREE.MeshBasicMaterial({map: texture, overdraw: 0.5 });
+        const mesh = new THREE.Mesh(geometry, material);
+
+
+        mesh.position.x = 1600;
+        mesh.position.y = 1900;
+        mesh.position.z = 1600;
+
+        scene.add(mesh);
+
+    });
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Add trees
