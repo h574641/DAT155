@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="yesyes">
+      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/smokeparticle.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,15 +58,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ProsjektDAT155/resources/images" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mfoys\WebstormProjects\DAT155-Lab6\startkode\ProsjektDAT155\resources\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mfoys\WebstormProjects\DAT155-Lab6\startkode" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DAT155-Lab6/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -73,8 +78,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.index.html (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -192,17 +197,22 @@
     <option name="LAST_COMMIT_MESSAGE" value="yesyes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1604420008475">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605792048895">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604420008475" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605792048895" />
+    <state x="562" y="115" key="CommitChangelistDialog2" timestamp="1605788965219">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="562" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1605788965219" />
     <state width="553" height="466" key="DebuggerActiveHint" timestamp="1605566572645">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="553" height="466" key="DebuggerActiveHint/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605566572645" />
-    <state x="216" y="195" width="1573" height="1074" key="DiffContextDialog" timestamp="1605624667215">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="162" y="145" width="1573" height="1074" key="DiffContextDialog" timestamp="1605792536826">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="162" y="145" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605792536826" />
     <state x="216" y="195" width="1573" height="1074" key="DiffContextDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605624667215" />
     <state x="987" y="369" key="FileChooserDialogImpl" timestamp="1605584907904">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -269,6 +279,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1258" y="330" key="MultipleFileMergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605624736200" />
+    <state x="712" y="222" key="RollbackChangesDialog" timestamp="1605792539993">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="712" y="222" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605792539993" />
     <state x="1180" y="465" key="VCS.ChangeListViewerDialog" timestamp="1605624676111">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -282,6 +296,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="702" y="466" key="VcsDiffUtil.ChangesDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605624497884" />
+    <state x="-10" y="87" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605788774706">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-10" y="87" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605788774706" />
     <state x="1437" y="482" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603282238931">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -151,6 +151,15 @@ async function main() {
     scene.add(terrain);
 
     /**
+     * Fog
+     */
+
+    const color = 0xFFFFFF;  // white
+    const near = 10;
+    const far = 6000;
+    scene.fog = new THREE.Fog(color, near, far);
+
+    /**
      * Water
      */
 
@@ -230,6 +239,57 @@ async function main() {
         composer.addPass(renderModel);
         composer.addPass(effectBloom);
         composer.addPass(effectFilm);
+
+    /**
+     * Smoke
+     */
+
+    const particleCount = 5000;
+    let points;
+    createPoints();
+
+    function createPoints() {
+        const geometry = new THREE.Geometry();
+
+        const texture = new THREE.TextureLoader().load('./resources/images/smokeparticle.png');
+        let material = new THREE.PointsMaterial({
+            size: 15,
+            map: texture,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            transparent: true,
+            color: 'rgb(30,30,30)'
+        });
+
+        const range = 175;
+        for (let i = 0; i < particleCount; i++) {
+            const x = THREE.Math.randInt(-range, range);
+            const y = THREE.Math.randInt(-range, range);
+            const z = THREE.Math.randInt(-range, range);
+            const point = new THREE.Vector3(x, y, z);
+            point.velocityX = THREE.Math.randFloat(-0.1, 0.1);
+            point.velocityY = THREE.Math.randFloat(2.0, 5.0);
+            geometry.vertices.push(point);
+        }
+
+        points = new THREE.Points(geometry, material);
+        points.position.y = 800;
+        scene.add(points);
+    }
+
+    function pointsAnimation() {
+        points.geometry.vertices.forEach(function(v) {
+            v.y = v.y + v.velocityY;
+            v.x = v.x + v.velocityX;
+
+            if (v.y >= 1000) {
+                v.y = 0;
+            }
+        });
+
+        points.geometry.verticesNeedUpdate = true;
+    }
+
 
     /**
      * GUI
@@ -474,6 +534,8 @@ async function main() {
         requestAnimationFrame(animate);
 
         requestAnimationFrame(loop);
+
+        pointsAnimation();
 
         render();
 
