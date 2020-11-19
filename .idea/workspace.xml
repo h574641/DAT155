@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="yesyes">
-      <change afterPath="$PROJECT_DIR$/ProsjektDAT155/resources/images/smokeparticle.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +67,7 @@
       <recent name="C:\Users\mfoys\WebstormProjects\DAT155-Lab6\startkode" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DAT155-Lab6/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -78,8 +76,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
+        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
@@ -104,7 +102,7 @@
       <workItem from="1605577443151" duration="5480000" />
       <workItem from="1605584810548" duration="15768000" />
       <workItem from="1605622843373" duration="3921000" />
-      <workItem from="1605788550062" duration="5904000" />
+      <workItem from="1605788550062" duration="7046000" />
     </task>
     <task id="LOCAL−00001" summary="Startkode">
       <created>1603276883975</created>
@@ -171,7 +169,13 @@
       <option name="project" value="LOCAL" />
       <updated>1605624692812</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL−00011" summary="yesyes">
+      <created>1605822737098</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1605822737098</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,11 +292,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1180" y="465" key="VCS.ChangeListViewerDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605624676111" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1605011756400">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605822749567">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604420015006" />
     <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605011756400" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605822749567" />
     <state x="702" y="466" key="VcsDiffUtil.ChangesDialog" timestamp="1605624497884">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
