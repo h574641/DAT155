@@ -380,7 +380,7 @@ async function main() {
             hus.position.y = height - 0.01;
             hus.position.z = pz;
 
-            hus.rotation.y = Math.random() * (2 * Math.PI);
+            hus.rotation.y = /*Math.random() * */(2 * Math.PI);
 
             hus.scale.multiplyScalar(5);
 
