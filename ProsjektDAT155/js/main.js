@@ -80,7 +80,7 @@ async function main() {
      */
     const directionalLight = new DirectionalLight(0xffffff);
     //const ambientLight = new AmbientLightProbe(0xffffff, 0.3);
-    directionalLight.position.set(300, 400, 2200);
+    directionalLight.position.set(300, 400, 0);
     //ambientLight.position.set(0,0, 300);
 
     directionalLight.castShadow = true;
@@ -362,7 +362,7 @@ async function main() {
 
             //const px = x + 1 + (6 * Math.random()) - 3;
             //const pz = z + 1 + (6 * Math.random()) - 3;
-            const px = 1200;
+            const px = -1200;
             const pz = 1200;
             const height = terrainGeometry.getHeightAt(px, pz);
 
@@ -447,15 +447,15 @@ async function main() {
         'resources/models/kenney_nature_kit/tree_thin.glb',
         // called when resource is loaded
         (object) => {
-            for (let x = -1500; x < 1500; x += 30) {
-                for (let z = -1500; z < 1500; z += 30) {
+            for (let x = -1400; x < 1400; x += 30) {
+                for (let z = -1400; z < 1400; z += 30) {
 
                     const px = x + 1 + (6 * Math.random()) - 3;
                     const pz = z + 1 + (6 * Math.random()) - 3;
 
                     const height = terrainGeometry.getHeightAt(px, pz);
 
-                    if (height > 370 && height < 510) {
+                    if (height > 370 && height < 470) {
                         const tree = object.scene.children[0].clone();
 
                         tree.traverse((child) => {
