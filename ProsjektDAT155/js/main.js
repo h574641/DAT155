@@ -204,7 +204,11 @@ async function main() {
             }
         )
 
+        //lava movement
 
+        //let delta = 5 * clock.getDelta();
+
+        //lavaMaterial.uniforms.value.time += 10 * delta;
 
 
         const lavaPlane = new Mesh(lavaGeometry, lavaMaterial);
@@ -518,9 +522,9 @@ async function main() {
         water.material.uniforms['time'].value += 1.0 / 60.0;
 
         //lava movement
-        let deltaLava = 5 * clock.getDelta();
+        //let deltaLava = 5 * clock.getDelta();
 
-        lavaMaterial.time += 10 * deltaLava;
+        //lavaMaterial.time += 10 * deltaLava;
 
         //
 

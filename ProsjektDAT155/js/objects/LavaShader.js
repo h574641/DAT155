@@ -18,7 +18,6 @@ export default class LavaShader extends ShaderMaterial {
         texture2.wrapS = texture2.wrapT = THREE.RepeatWrapping;
 
 
-
         let vertexShader = `
 
             uniform vec2 uvScale;
