@@ -8,7 +8,7 @@ import {
     RepeatWrapping,
     DirectionalLight,
     Vector3,
-    AxesHelper,
+    AxesHelper, AmbientLight, AmbientLightProbe,
 } from './lib/three.module.js';
 import * as THREE from './lib/three.module.js';
 import Utilities from './lib/Utilities.js';
@@ -20,20 +20,32 @@ import { GLTFLoader } from './loaders/GLTFLoader.js';
 import { SimplexNoise } from './lib/SimplexNoise.js';
 import { Water } from './objects/Water.js';
 import {GUI} from './lib/dat.gui.module.js';
+import LavaShader from "./objects/LavaShader.js";
+import {RenderPass} from "./postprocessing/RenderPass.js";
+import {BloomPass} from "./postprocessing/BloomPass.js";
+import {FilmPass} from "./postprocessing/FilmPass.js";
+import {EffectComposer} from "./postprocessing/EffectComposer.js";
 //import { Sky } from './objects/Sky.js';
+
 
 async function main() {
 
     const scene = new Scene();
 
+    const clock = new THREE.Clock();
+
+    let composer;
+
     const axesHelper = new AxesHelper(30);
+
     scene.add(axesHelper);
 
-    const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
 
-    const renderer = new WebGLRenderer({antialias: true});
+    const renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setClearColor(0xffffff);
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.autoClear = false;
 
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
@@ -65,7 +77,9 @@ async function main() {
      * Add light
      */
     const directionalLight = new DirectionalLight(0xffffff);
-    directionalLight.position.set(300, 400, 0);
+    const ambientLight = new AmbientLightProbe(0xffffff, 0.1);
+    directionalLight.position.set(300, 400, 2200);
+    ambientLight.position.set(0,0, 400);
 
     directionalLight.castShadow = true;
 
@@ -76,8 +90,10 @@ async function main() {
     directionalLight.shadow.camera.far = 2000;
 
     scene.add(directionalLight);
+    scene.add(ambientLight);
 
-    // Set direction
+
+    //Set direction
     directionalLight.target.position.set(0, 15, 0);
     scene.add(directionalLight.target);
 
@@ -134,12 +150,11 @@ async function main() {
 
     scene.add(terrain);
 
-
     /**
      * Water
      */
 
-    const waterGeometry = new THREE.PlaneBufferGeometry(3000, 3000);
+    const waterGeometry = new THREE.PlaneGeometry(3000, 3000);
 
     const water = new Water(
         waterGeometry,
@@ -167,13 +182,59 @@ async function main() {
     scene.add(water);
 
     /**
+     * Lava
+     */
+
+        const textureLoader = new THREE.TextureLoader();
+
+        const lavaGeometry = new THREE.SphereBufferGeometry(350, 128, 128, 10)
+
+
+        let lavaMaterial = new LavaShader({
+                vertexShader: LavaShader.vertexShader,
+                fragmentShader: LavaShader.fragmentShader,
+                uniforms: {
+                    fogDensity: 0.001,
+                    fogColor: new THREE.Vector3(0, 0, 0),
+                    time: 1.0,
+                    uvScale: new THREE.Vector2(3.0, 1),
+                    texture1: textureLoader.load('resources/textures/cloud.png'),
+                    texture2: textureLoader.load('resources/textures/lavatile.jpg')
+                }
+            }
+        )
+
+
+
+
+        const lavaPlane = new Mesh(lavaGeometry, lavaMaterial);
+
+        lavaPlane.rotation.x = -Math.PI / 2;
+
+        lavaPlane.translateZ(450);
+
+        lavaPlane.layers.enable(1);
+        scene.add(lavaPlane);
+
+
+        const renderModel = new RenderPass(scene, camera);
+        const effectBloom = new BloomPass(3.25);
+        const effectFilm = new FilmPass(0.35, 0.95, 2048, false);
+
+        composer = new EffectComposer(renderer);
+
+        composer.addPass(renderModel);
+        composer.addPass(effectBloom);
+        composer.addPass(effectFilm);
+
+    /**
      * GUI
      */
-    var gui = new GUI();
+    const gui = new GUI();
 
-    var uniforms = water.material.uniforms;
+    let uniforms = water.material.uniforms;
 
-    var folder = gui.addFolder( 'Water' );
+    const folder = gui.addFolder( 'Water' );
     folder.add( uniforms.distortionScale, 'value', 0, 8, 0.1 ).name( 'distortionScale' );
     folder.add( uniforms.size, 'value', 0.1, 10, 0.1 ).name( 'size' );
     folder.add( uniforms.alpha, 'value', 0.9, 1, .001 ).name( 'alpha' );
@@ -406,9 +467,11 @@ async function main() {
 
         skybox.rotation.y += 0.001;
 
-        renderer.render(scene, camera);
-
         requestAnimationFrame(animate);
+
+        requestAnimationFrame(loop);
+
+        render();
 
     }
 
@@ -450,15 +513,33 @@ async function main() {
         velocity.applyQuaternion(camera.quaternion);
         camera.position.add(velocity);
 
+
         // water movement
-        water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+        water.material.uniforms['time'].value += 1.0 / 60.0;
 
-        // render scene:
-        renderer.render(scene, camera);
+        //lava movement
+        let deltaLava = 5 * clock.getDelta();
 
-        requestAnimationFrame(loop);
+        lavaMaterial.time += 10 * deltaLava;
+
+        //
+
 
     }
+    function render() {
+
+
+
+        renderer.clear();
+        camera.layers.set(1);
+        composer.render();
+
+        renderer.clearDepth();
+        camera.layers.set(0);
+        renderer.render(scene, camera);
+
+    }
+
 
     loop(performance.now());
     animate();
