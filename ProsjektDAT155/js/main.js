@@ -206,7 +206,7 @@ async function main() {
                     fogDensity: 0.0001,
                     fogColor: new THREE.Vector3(0, 0, 0),
                     time: 1.0,
-                    uvScale: new THREE.Vector2(3.0, 1),
+                    uvScale: new THREE.Vector2(9, 3),
                     texture1: textureLoader.load('resources/textures/cloud.png'),
                     texture2: textureLoader.load('resources/textures/lavatile.jpg')
                 }
@@ -228,9 +228,27 @@ async function main() {
         scene.add(lavaPlane);
 
 
+        //postprocessing
+
+        let effectParams = {
+            bloomStrength: 3,
+            noiseIntensity: 0.35,
+            scanlinesIntensity: 0.95,
+            scanlinesCount: 2048,
+            grayscale: false
+        }
+
         const renderModel = new RenderPass(scene, camera);
-        const effectBloom = new BloomPass(2.25);
-        const effectFilm = new FilmPass(0.35, 0.95, 2048, false);
+        const effectBloom = new BloomPass(
+            {
+            strength: effectParams.bloomStrength,
+        });
+        const effectFilm = new FilmPass({
+            noiseIntensity: effectParams.noiseIntensity,
+            scanlinesIntensity: effectParams.scanlinesIntensity,
+            scanlinesCount: effectParams.scanlinesCount,
+            grayscale: effectParams.grayscale
+        });
 
         composer = new EffectComposer(renderer);
 
@@ -307,9 +325,21 @@ async function main() {
     let lavaUniforms = lavaMaterial.uniforms;
 
     const lavaFolder = gui.addFolder('Lava');
-    lavaFolder.add( lavaUniforms.time, 'value', 0, 10, 0.1).name('time');
+    lavaFolder.add( lavaUniforms.time, 'value', 0, 100, 1).name('time');
+    lavaFolder.add( lavaUniforms.fogDensity, 'value', 0, 0.007, 0.0001).name('fogDensity');
     lavaFolder.open();
 
+    const bloomFolder = gui.addFolder('Bloom');
+    bloomFolder.add(effectParams, 'bloomStrength', 0.0, 200.0).onChange( function ( value){
+        effectBloom.strength = Number( value );
+    });
+    bloomFolder.add(effectParams, 'noiseIntensity', 0.00, 5).onChange( function (value){
+        effectFilm.noiseIntensity = Number(value);
+    });
+    bloomFolder.add(effectParams, 'scanlinesIntensity', 0.00, 5).onChange( function (value){
+        effectFilm.scanlinesIntensity = Number(value);
+    })
+    folder.open();
     /**
      * Hus
      */
