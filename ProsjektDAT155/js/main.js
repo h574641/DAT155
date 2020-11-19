@@ -9,6 +9,9 @@ import {
     DirectionalLight,
     Vector3,
     AxesHelper,
+    Object3D,
+    AnimationMixer,
+    Clock
 } from './lib/three.module.js';
 import * as THREE from './lib/three.module.js';
 import Utilities from './lib/Utilities.js';
@@ -421,7 +424,38 @@ async function main() {
 
     });
 
-
+    /**
+     * Ho Oh
+     */
+        // instantiate a GLTFLoader:
+    const loaderBird = new GLTFLoader();
+    let hooh;
+    let vulkan = new Object3D();
+    vulkan.position.y = 40;
+    scene.add(vulkan);
+    // Create an AnimationMixer, and get the list of AnimationClip instances
+    let mixer;
+    loaderBird.load(
+        // resource URL
+        'resources/models/ho_oh/scene.gltf',
+        // called when resource is loaded
+        (object) => {
+            hooh = object.scene.children[0];
+            hooh.scale.multiplyScalar(0.02);
+            hooh.position.x = 50;
+            hooh.rotation.z = Math.PI;
+            vulkan.add(hooh);
+            mixer = new AnimationMixer( hooh );
+            let action = mixer.clipAction( object.animations[0] );
+            action.play();
+        },
+        (xhr) => {
+            console.log(((xhr.loaded / xhr.total) * 100) + '% loaded');
+        },
+        (error) => {
+            console.error('Error loading model.', error);
+        }
+    );
 
     /**
      * Add trees
@@ -593,6 +627,9 @@ async function main() {
     });
 
     function animate() {
+        rotateObject(vulkan, [0.0, 0.02, 0.0]);
+        let delta = clock.getDelta();
+        if ( mixer ) mixer.update( delta );
 
         skybox.rotation.x += 0.001;
 
@@ -606,6 +643,13 @@ async function main() {
 
         render();
 
+    }
+
+    function rotateObject(object, rotation) {
+        //Hjelpe-metode for å rotere et objekt
+        object.rotation.x += rotation[0];
+        object.rotation.y += rotation[1];
+        object.rotation.z += rotation[2];
     }
 
     const velocity = new Vector3(0.0, 0.0, 0.0);
