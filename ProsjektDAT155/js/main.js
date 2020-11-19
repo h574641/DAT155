@@ -431,7 +431,7 @@ async function main() {
     const loaderBird = new GLTFLoader();
     let hooh;
     let vulkan = new Object3D();
-    vulkan.position.y = 40;
+    vulkan.position.y = 800;
     scene.add(vulkan);
     // Create an AnimationMixer, and get the list of AnimationClip instances
     let mixer;
@@ -441,8 +441,8 @@ async function main() {
         // called when resource is loaded
         (object) => {
             hooh = object.scene.children[0];
-            hooh.scale.multiplyScalar(0.02);
-            hooh.position.x = 50;
+            hooh.scale.multiplyScalar(0.5);
+            hooh.position.x = 700;
             hooh.rotation.z = Math.PI;
             vulkan.add(hooh);
             mixer = new AnimationMixer( hooh );
