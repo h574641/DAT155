@@ -34,8 +34,6 @@ async function main() {
 
     const clock = new THREE.Clock();
 
-    let composer;
-
     const axesHelper = new AxesHelper(30);
 
     scene.add(axesHelper);
@@ -148,8 +146,7 @@ async function main() {
 
     terrain.castShadow = true;
     terrain.receiveShadow = true;
-
-
+    
     scene.add(terrain);
 
     /**
@@ -252,7 +249,7 @@ async function main() {
             grayscale: effectParams.grayscale
         });
 
-        composer = new EffectComposer(renderer);
+        let composer = new EffectComposer(renderer);
 
         composer.addPass(renderModel);
         composer.addPass(effectBloom);
@@ -278,7 +275,7 @@ async function main() {
             blending: THREE.AdditiveBlending,
             depthWrite: false,
             transparent: true,
-            color: 'rgb(30,30,30)'
+            color: 'rgb(112,128,144)'
         });
 
         const range = 175;
@@ -412,7 +409,7 @@ async function main() {
 
         const geometry = new THREE.SphereGeometry(100, 200, 200);
 
-        const material = new THREE.MeshBasicMaterial({map: texture, overdraw: 0.5 });
+        const material = new THREE.MeshBasicMaterial({map: texture});
         const mesh = new THREE.Mesh(geometry, material);
 
 
@@ -423,15 +420,6 @@ async function main() {
         scene.add(mesh);
 
     });
-
-
-
-
-
-
-
-
-
 
 
 
@@ -669,8 +657,6 @@ async function main() {
         let deltaLava = 5 * clock.getDelta();
 
         lavaMaterial.uniforms['time'].value += 0.1 * deltaLava;
-
-        //
 
 
         // water movement
