@@ -35,7 +35,8 @@ async function main() {
 
     const scene = new Scene();
 
-    const clock = new THREE.Clock();
+    const clock = new Clock();
+    const clock2 = new Clock();
 
     const axesHelper = new AxesHelper(30);
 
@@ -680,20 +681,22 @@ async function main() {
         velocity.applyQuaternion(camera.quaternion);
         camera.position.add(velocity);
 
-        //lava movement
-        let deltaLava = 5 * clock.getDelta();
-
-        lavaMaterial.uniforms['time'].value += 0.1 * deltaLava;
 
 
-        // water movement
-        water.material.uniforms['time'].value += 1.0 / 60.0;
 
 
 
     }
     function render() {
 
+        //lava movement
+        let deltaLava = 5 * clock2.getDelta();
+
+        lavaMaterial.uniforms['time'].value += 0.1 * deltaLava;
+
+
+        // water movement
+        water.material.uniforms['time'].value += 1.0 / 60.0;
 
         renderer.clear();
         camera.layers.set(1);
