@@ -682,13 +682,6 @@ async function main() {
         camera.position.add(velocity);
 
 
-
-
-
-
-    }
-    function render() {
-
         //lava movement
         let deltaLava = 5 * clock2.getDelta();
 
@@ -697,6 +690,13 @@ async function main() {
 
         // water movement
         water.material.uniforms['time'].value += 1.0 / 60.0;
+
+
+
+
+    }
+    function render() {
+
 
         renderer.clear();
         camera.layers.set(1);
