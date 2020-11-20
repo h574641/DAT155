@@ -86,9 +86,9 @@ async function main() {
      * Add light
      */
     const directionalLight = new DirectionalLight(0xffffff);
-    //const ambientLight = new AmbientLight(0xffffff, 0.3);
+    const ambientLight = new AmbientLight(0xffffff, 0.2);
     directionalLight.position.set(300, 400, 0);
-    //ambientLight.position.set(1600,1900, 1600);
+    ambientLight.position.set(1600,1900, 1600);
 
     directionalLight.castShadow = true;
 
@@ -99,7 +99,7 @@ async function main() {
     directionalLight.shadow.camera.far = 2000;
 
     scene.add(directionalLight);
-    //scene.add(ambientLight);
+    scene.add(ambientLight);
 
 
     //Set direction
@@ -194,7 +194,7 @@ async function main() {
 
     water.rotation.x = -Math.PI / 2;
 
-    water.translateZ(370);
+    water.translateZ(360);
 
     scene.add(water);
 
@@ -424,7 +424,7 @@ async function main() {
         // called when resource is loaded
         (object) => {
             hooh = object.scene.children[0];
-            hooh.scale.multiplyScalar(1);
+            hooh.scale.multiplyScalar(0.7);
             hooh.position.x = 850;
             hooh.rotation.z = Math.PI;
             vulkan.add(hooh);
@@ -457,11 +457,13 @@ async function main() {
     }
     rainMaterial = new PointsMaterial({
         color: 0xaaaaaa,
-        size: 0.2,
+        size: 1,
         transparent: true
     });
     rain = new Points(rainGeo,rainMaterial);
+    rain.layers.enable(1);
     scene.add(rain);
+
 
     /**
      * Add trees
