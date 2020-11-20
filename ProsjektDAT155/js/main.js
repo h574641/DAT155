@@ -14,7 +14,8 @@ import {
     Points,
     Object3D,
     AnimationMixer,
-    Clock
+    Clock,
+    AmbientLight
 } from './lib/three.module.js';
 import * as THREE from './lib/three.module.js';
 import Utilities from './lib/Utilities.js';
@@ -31,6 +32,8 @@ import {RenderPass} from "./postprocessing/RenderPass.js";
 import {BloomPass} from "./postprocessing/BloomPass.js";
 import {FilmPass} from "./postprocessing/FilmPass.js";
 import {EffectComposer} from "./postprocessing/EffectComposer.js";
+import Planet from "./objects/Planet.js"
+import Stats from "./lib/stats.module.js";
 
 
 
@@ -84,9 +87,9 @@ async function main() {
      * Add light
      */
     const directionalLight = new DirectionalLight(0xffffff);
-    //const ambientLight = new AmbientLightProbe(0xffffff, 0.3);
+    const ambientLight = new AmbientLight(0xffffff, 0.3);
     directionalLight.position.set(300, 400, 0);
-    //ambientLight.position.set(0,0, 300);
+    ambientLight.position.set(1600,1900, 1600);
 
     directionalLight.castShadow = true;
 
@@ -97,7 +100,7 @@ async function main() {
     directionalLight.shadow.camera.far = 2000;
 
     scene.add(directionalLight);
-    //scene.add(ambientLight);
+    scene.add(ambientLight);
 
 
     //Set direction
@@ -399,25 +402,24 @@ async function main() {
      */
 
 
-    const textureLoader2 = new THREE.TextureLoader();
 
-    let sphereTexture = textureLoader2.load( 'resources/textures/moonMoon.jpg');
-    let sphereBumpMap = textureLoader2.load( 'resources/textures/moonBump.jpg');
+    let PlanetTexture = new TextureLoader().load('resources/textures/moonMoon.jpg');
+    let PlantBump = new TextureLoader().load('resources/textures/bump_map.jpg');
+    let planetGeometry = new THREE.SphereBufferGeometry(100, 64, 64);
 
-    let Sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(100, 200, 200),
-        new THREE.MeshBasicMaterial({
-            color:0xA9A9A9,
-            map: sphereTexture,
-            bumpMap: sphereBumpMap
-
-        })
+    let planetMaterial = new THREE.MeshPhongMaterial({
+        map: PlanetTexture,
+        bumpMap: PlantBump,
+        bumpScale: 15
+    });
+    const Sphere = new THREE.Mesh(planetGeometry, planetMaterial);
 
 
 
-    );
 
-    Sphere.material.needsUpdate = true;
+
+
+
     Sphere.position.x = 1600;
     Sphere.position.y = 1900;
     Sphere.position.z = 1600;
@@ -476,7 +478,7 @@ async function main() {
     }
     rainMaterial = new PointsMaterial({
         color: 0xaaaaaa,
-        size: 3,
+        size: 0.2,
         transparent: true
     });
     rain = new Points(rainGeo,rainMaterial);
@@ -503,7 +505,7 @@ async function main() {
                     const height = terrainGeometry.getHeightAt(px, pz);
 
                     if (height > 370 && height < 470) {
-                        const tree = object.scene.children[0].clone();
+                        let tree = object.scene.children[0].clone();
 
                         tree.traverse((child) => {
                             if (child.isMesh) {
@@ -543,6 +545,74 @@ async function main() {
     let skybox = new THREE.Mesh(skyboxGeo, materialArray);
 
     scene.add(skybox);
+
+
+    /**
+     * Raycasting
+     */
+    /*
+    class PickHelper {
+        constructor() {
+            this.raycaster = new THREE.Raycaster();
+            this.pickedObject = null;
+            this.pickedObjectSavedColor = 0;
+        }
+    pick(normalizedPosition, scene, camera, time) {
+            // restore the color if there is a picked object
+        if (this.pickedObject) {
+            this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+            this.pickedObject = undefined;
+            }
+
+            // cast a ray through the frustum
+            this.raycaster.setFromCamera(normalizedPosition, camera);
+            // get the list of objects the ray intersected
+    const intersectedObjects = this.raycaster.intersectObjects(scene.children, true);
+         if (intersectedObjects.length) {
+                // pick the first object. It's the closest one
+            this.pickedObject = intersectedObjects[0].object;
+                // save its color
+            this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+                // set its emissive color to flashing red/yellow
+            this.pickedObject.material.emissive.setHex((time * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
+            }
+        }
+    }
+    const pickPosition = {x: 0, y: 0};
+    clearPickPosition();
+
+    let pickHelper = new PickHelper();
+    //
+
+    function getCanvasRelativePosition(event) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: (event.clientX - rect.left) * canvas.width  / rect.width,
+            y: (event.clientY - rect.top ) * canvas.height / rect.height,
+        };
+    }
+
+    function setPickPosition(event) {
+        const pos = getCanvasRelativePosition(event);
+        pickPosition.x = (pos.x / canvas.width ) *  2 - 1;
+        pickPosition.y = (pos.y / canvas.height) * -2 + 1;  // note we flip Y
+    }
+
+    function clearPickPosition() {
+        // unlike the mouse which always has a position
+        // if the user stops touching the screen we want
+        // to stop picking. For now we just pick a value
+        // unlikely to pick something
+        pickPosition.x = -100000;
+        pickPosition.y = -100000;
+    }
+
+    window.addEventListener('mousemove', setPickPosition);
+    window.addEventListener('mouseout', clearPickPosition);
+    window.addEventListener('mouseleave', clearPickPosition);
+
+    
+     */
 
     /**
      * Set up camera controller:
@@ -680,6 +750,7 @@ async function main() {
 
         render();
 
+        //stats.update();
     }
 
     function rotateObject(object, rotation) {
@@ -751,6 +822,9 @@ async function main() {
         renderer.clearDepth();
         camera.layers.set(0);
         renderer.render(scene, camera);
+
+
+
 
     }
 
