@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="yesyes" />
+    <list default="true" id="a24e7793-28d5-4cb9-97be-ad477f989e9f" name="Default Changelist" comment="yesyes">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_11_2020_22_48__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_11_2020_22_48__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ProsjektDAT155/js/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +104,8 @@
       <workItem from="1605577443151" duration="5480000" />
       <workItem from="1605584810548" duration="15768000" />
       <workItem from="1605622843373" duration="3921000" />
-      <workItem from="1605788550062" duration="7368000" />
+      <workItem from="1605788550062" duration="11385000" />
+      <workItem from="1605867397770" duration="3853000" />
     </task>
     <task id="LOCAL−00001" summary="Startkode">
       <created>1603276883975</created>
@@ -179,7 +184,13 @@
       <option name="presentableId" value="LOCAL−00012" />
       <updated>1605823778763</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL−00013" summary="yesyes">
+      <created>1605824055306</created>
+      <option name="number" value="LOCAL−00013" />
+      <option name="presentableId" value="LOCAL−00013" />
+      <updated>1605824055306</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,10 +291,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="874" height="435" key="GridCell.Tab.2.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605629277195" />
-    <state x="219" y="47" key="MergeDialog" timestamp="1603282200259">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="164" y="35" key="MergeDialog" timestamp="1605825296093">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="219" y="47" key="MergeDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1603282200259" />
+    <state x="164" y="35" key="MergeDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605825296093" />
     <state x="1258" y="330" key="MultipleFileMergeDialog" timestamp="1605624736200">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -296,12 +308,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1180" y="465" key="VCS.ChangeListViewerDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605624676111" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605823784631">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605824063340">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604420015006" />
     <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1605011756400" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605823784631" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605824063340" />
     <state x="702" y="466" key="VcsDiffUtil.ChangesDialog" timestamp="1605624497884">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

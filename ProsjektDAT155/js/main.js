@@ -374,7 +374,7 @@ async function main() {
             hus.position.y = height - 0.01;
             hus.position.z = pz;
 
-            hus.rotation.y = /*Math.random() * */(2 * Math.PI);
+            hus.rotation.y =  (2 * Math.PI);
 
             hus.scale.multiplyScalar(5);
 
@@ -399,24 +399,32 @@ async function main() {
      */
 
 
-    const loader3 = new THREE.TextureLoader();
+    const textureLoader2 = new THREE.TextureLoader();
 
-    loader3.load( 'resources/textures/4k_sphere.jpg', function (texture){
+    let sphereTexture = textureLoader2.load( 'resources/textures/moonMoon.jpg');
+    let sphereBumpMap = textureLoader2.load( 'resources/textures/moonBump.jpg');
+
+    let Sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(100, 200, 200),
+        new THREE.MeshBasicMaterial({
+            color:0xA9A9A9,
+            map: sphereTexture,
+            bumpMap: sphereBumpMap
+
+        })
 
 
-        const geometry = new THREE.SphereGeometry(100, 200, 200);
 
-        const material = new THREE.MeshBasicMaterial({map: texture});
-        const mesh = new THREE.Mesh(geometry, material);
+    );
 
+    Sphere.material.needsUpdate = true;
+    Sphere.position.x = 1600;
+    Sphere.position.y = 1900;
+    Sphere.position.z = 1600;
+    scene.add(Sphere);
+    Sphere.receiveShadow = true;
+    Sphere.castShadow = true;
 
-        mesh.position.x = 1600;
-        mesh.position.y = 1900;
-        mesh.position.z = 1600;
-
-        scene.add(mesh);
-
-    });
 
     /**
      * Ho Oh
