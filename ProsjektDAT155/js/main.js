@@ -28,10 +28,10 @@ import { SimplexNoise } from './lib/SimplexNoise.js';
 import { Water } from './objects/Water.js';
 import {GUI} from './lib/dat.gui.module.js';
 import LavaShader from "./objects/LavaShader.js";
-import {RenderPass} from "./postprocessing/RenderPass.js";
-import {BloomPass} from "./postprocessing/BloomPass.js";
-import {FilmPass} from "./postprocessing/FilmPass.js";
-import {EffectComposer} from "./postprocessing/EffectComposer.js";
+//import {RenderPass} from "./postprocessing/RenderPass.js";
+//import {BloomPass} from "./postprocessing/BloomPass.js";
+//import {FilmPass} from "./postprocessing/FilmPass.js";
+//import {EffectComposer} from "./postprocessing/EffectComposer.js";
 
 
 
