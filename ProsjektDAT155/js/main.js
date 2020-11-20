@@ -436,7 +436,7 @@ async function main() {
         (object) => {
             hooh = object.scene.children[0];
             hooh.scale.multiplyScalar(1);
-            hooh.position.x = 750;
+            hooh.position.x = 850;
             hooh.rotation.z = Math.PI;
             vulkan.add(hooh);
             mixer = new AnimationMixer( hooh );
