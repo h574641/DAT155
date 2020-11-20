@@ -9,6 +9,9 @@ import {
     DirectionalLight,
     Vector3,
     AxesHelper,
+    Geometry,
+    PointsMaterial,
+    Points,
     Object3D,
     AnimationMixer,
     Clock
@@ -432,7 +435,7 @@ async function main() {
         // called when resource is loaded
         (object) => {
             hooh = object.scene.children[0];
-            hooh.scale.multiplyScalar(0.5);
+            hooh.scale.multiplyScalar(1);
             hooh.position.x = 750;
             hooh.rotation.z = Math.PI;
             vulkan.add(hooh);
@@ -447,6 +450,29 @@ async function main() {
             console.error('Error loading model.', error);
         }
     );
+
+    /**
+     * Rain
+     */
+    let rainGeo, rainDrop, rainMaterial, rain, rainCount = 1000;
+    rainGeo = new Geometry();
+    for(let i=0;i<rainCount;i++) {
+        rainDrop = new Vector3(
+            Math.random() * 1400,
+            Math.random() * 1500,
+            Math.random() * 1400
+        );
+        rainDrop.velocity = {};
+        rainDrop.velocity = 0;
+        rainGeo.vertices.push(rainDrop);
+    }
+    rainMaterial = new PointsMaterial({
+        color: 0xaaaaaa,
+        size: 10,
+        transparent: true
+    });
+    rain = new Points(rainGeo,rainMaterial);
+    scene.add(rain);
 
     /**
      * Add trees
@@ -618,9 +644,21 @@ async function main() {
     });
 
     function animate() {
+        //Roterer Pokemon
         rotateObject(vulkan, [0.0, 0.02, 0.0]);
         let delta = clock.getDelta();
         if ( mixer ) mixer.update( delta );
+        //Rain
+        rainGeo.vertices.forEach(p => {
+            p.velocity -= 0.1 + Math.random() * 0.1;
+            p.y += p.velocity;
+            if (p.y < -200) {
+                p.y = 1100;
+                p.velocity = 0;
+            }
+        });
+        rainGeo.verticesNeedUpdate = true;
+        rain.rotation.y +=0.002;
 
         skybox.rotation.x += 0.001;
 
