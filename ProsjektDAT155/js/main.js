@@ -443,7 +443,7 @@ async function main() {
     /**
      * Rain
      */
-    let rainGeo, rainDrop, rainMaterial, rain, rainCount = 2000;
+    let rainGeo, rainDrop, rainMaterial, rain, rainCount = 5000;
     rainGeo = new Geometry();
     for(let i=0;i<rainCount;i++) {
         rainDrop = new Vector3(
@@ -641,7 +641,7 @@ async function main() {
         if ( mixer ) mixer.update( delta );
         //Rain
         rainGeo.vertices.forEach(p => {
-            p.velocity -= 0.1 + Math.random() * 5;
+            p.velocity -= 0.1 + Math.random() * 100;
             p.y += p.velocity;
             if (p.y < -100) {
                 p.y = 1100;
