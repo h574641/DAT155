@@ -32,8 +32,7 @@ import {RenderPass} from "./postprocessing/RenderPass.js";
 import {BloomPass} from "./postprocessing/BloomPass.js";
 import {FilmPass} from "./postprocessing/FilmPass.js";
 import {EffectComposer} from "./postprocessing/EffectComposer.js";
-import Planet from "./objects/Planet.js"
-import Stats from "./lib/stats.module.js";
+
 
 
 
@@ -354,25 +353,11 @@ async function main() {
         'resources/models/Hus.glb',
         // called when resource is loaded
         (object) => {
-            //for (let x = 1000; x < 1050; x += 50) {
-            // for (let z = 1000; z < 1050; z += 50) {
 
-            //const px = x + 1 + (6 * Math.random()) - 3;
-            //const pz = z + 1 + (6 * Math.random()) - 3;
             const px = -1200;
             const pz = 1200;
             const height = terrainGeometry.getHeightAt(px, pz);
-
-            //if (height > 420 /*&& height < 480*/) {
-            const hus = object.scene/*.children[0].clone()*/;
-            /*
-            hus.traverse((child) => {
-                if (child.isMesh) {
-                    child.castShadow = true;
-                    child.receiveShadow = true;
-                }
-            });*/
-
+            const hus = object.scene;
             hus.position.x = px;
             hus.position.y = height - 0.01;
             hus.position.z = pz;
@@ -382,10 +367,7 @@ async function main() {
             hus.scale.multiplyScalar(5);
 
             scene.add(hus);
-            //}
 
-            //}
-            //}
         },
         (xhr) => {
             console.log(((xhr.loaded / xhr.total) * 100) + '% loaded');
@@ -398,8 +380,8 @@ async function main() {
 
     /**
      * Sphere med Bumpmapping
-     *
      */
+
 
 
 
