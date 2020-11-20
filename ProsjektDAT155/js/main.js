@@ -454,13 +454,13 @@ async function main() {
     /**
      * Rain
      */
-    let rainGeo, rainDrop, rainMaterial, rain, rainCount = 1000;
+    let rainGeo, rainDrop, rainMaterial, rain, rainCount = 2000;
     rainGeo = new Geometry();
     for(let i=0;i<rainCount;i++) {
         rainDrop = new Vector3(
-            Math.random() * 1400,
-            Math.random() * 1500,
-            Math.random() * 1400
+            Math.random() * 1500 - Math.random() * 1500,
+            Math.random() * 1000,
+            Math.random() * 1500 - Math.random() * 1500
         );
         rainDrop.velocity = {};
         rainDrop.velocity = 0;
@@ -468,7 +468,7 @@ async function main() {
     }
     rainMaterial = new PointsMaterial({
         color: 0xaaaaaa,
-        size: 10,
+        size: 3,
         transparent: true
     });
     rain = new Points(rainGeo,rainMaterial);
@@ -650,9 +650,9 @@ async function main() {
         if ( mixer ) mixer.update( delta );
         //Rain
         rainGeo.vertices.forEach(p => {
-            p.velocity -= 0.1 + Math.random() * 0.1;
+            p.velocity -= 0.1 + Math.random() * 5;
             p.y += p.velocity;
-            if (p.y < -200) {
+            if (p.y < -100) {
                 p.y = 1100;
                 p.velocity = 0;
             }
