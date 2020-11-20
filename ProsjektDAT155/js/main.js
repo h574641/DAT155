@@ -238,6 +238,7 @@ async function main() {
 
         //postprocessing
 
+        /*
 
         const composer = new EffectComposer( renderer );
 
@@ -251,7 +252,7 @@ async function main() {
             composer.addPass( effectFilm );
             composer.addPass( renderModel );
 
-
+        */
     /**
      * Smoke
      */
@@ -728,7 +729,7 @@ async function main() {
 
         renderer.clear();
         camera.layers.set(1);
-        composer.render();
+        //composer.render();
 
         renderer.clearDepth();
         camera.layers.set(0);
